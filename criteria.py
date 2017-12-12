@@ -3218,16 +3218,17 @@ class PCExt(Criterion):
               is_valid_numeric_attrib)) in enumerate(zip(tree_node.valid_nominal_attribute,
                                                          tree_node.valid_numeric_attribute)):
             if is_valid_nominal_attrib:
-                num_samples = len(tree_node.valid_samples_indices)
                 contingency_table = tree_node.contingency_tables[attrib_index].contingency_table
-                num_samples_per_value = tree_node.contingency_tables[
-                    attrib_index].num_samples_per_value
+                values_num_samples = tree_node.contingency_tables[
+                    attrib_index].values_num_samples
                 (new_contingency_table,
                  new_num_samples_per_value,
-                 new_index_to_old) = cls._group_values(contingency_table, num_samples_per_value)
+                 new_index_to_old) = cls._group_values(contingency_table, values_num_samples)
 
                 principal_component = cls._get_principal_component(
-                    num_samples, new_contingency_table, new_num_samples_per_value)
+                    len(tree_node.valid_samples_indices),
+                    new_contingency_table,
+                    new_num_samples_per_value)
                 inner_product_results = np.dot(principal_component, new_contingency_table.T)
                 new_indices_order = inner_product_results.argsort()
 
@@ -3238,7 +3239,6 @@ class PCExt(Criterion):
                 right_values = set(new_indices_order)
                 for metaindex, first_right in enumerate(new_indices_order):
                     curr_split_impurity = cls._calculate_split_gini_index(
-                        num_samples,
                         new_contingency_table,
                         new_num_samples_per_value,
                         left_values,
@@ -3254,7 +3254,6 @@ class PCExt(Criterion):
                         right_values.remove(first_right)
                         left_values.add(first_right)
                         curr_ext_split_impurity = cls._calculate_split_gini_index(
-                            num_samples,
                             new_contingency_table,
                             new_num_samples_per_value,
                             left_values,
@@ -3343,16 +3342,10 @@ class PCExt(Criterion):
         return (best_gini, best_last_left_value, best_first_right_value)
 
     @staticmethod
-    def _get_num_samples_per_side(num_samples, num_samples_per_value, left_values, right_values):
+    def _get_num_samples_per_side(values_num_samples, left_values, right_values):
         """Returns two sets, each containing the values of a split side."""
-        if len(left_values) <= len(right_values):
-            num_left_samples = sum(num_samples_per_value[value]
-                                   for value in left_values)
-            num_right_samples = num_samples - num_left_samples
-        else:
-            num_right_samples = sum(num_samples_per_value[value]
-                                    for value in right_values)
-            num_left_samples = num_samples - num_right_samples
+        num_left_samples = sum(values_num_samples[value] for value in left_values)
+        num_right_samples = sum(values_num_samples[value] for value in right_values)
         return  num_left_samples, num_right_samples
 
     @staticmethod
@@ -3367,11 +3360,11 @@ class PCExt(Criterion):
         return num_samples_per_class
 
     @classmethod
-    def _calculate_split_gini_index(cls, num_samples, contingency_table, num_samples_per_value,
-                                    left_values, right_values):
+    def _calculate_split_gini_index(cls, contingency_table, values_num_samples, left_values,
+                                    right_values):
         """Calculates the weighted Gini index of a split."""
         num_left_samples, num_right_samples = cls._get_num_samples_per_side(
-            num_samples, num_samples_per_value, left_values, right_values)
+            values_num_samples, left_values, right_values)
         num_samples_per_class_left = cls._get_num_samples_per_class_in_values(
             contingency_table, left_values)
         num_samples_per_class_right = cls._get_num_samples_per_class_in_values(
@@ -3383,7 +3376,7 @@ class PCExt(Criterion):
     def _get_gini_value(cls, num_samples_per_class_left, num_samples_per_class_right,
                         num_left_samples, num_right_samples):
         """Calculates the weighted Gini index of a split."""
-        num_samples = num_samples_per_class_left + num_samples_per_class_right
+        num_samples = num_left_samples + num_right_samples
         left_gini = cls._calculate_node_gini_index(num_left_samples, num_samples_per_class_left)
         right_gini = cls._calculate_node_gini_index(num_right_samples, num_samples_per_class_right)
         return ((num_left_samples / num_samples) * left_gini +
@@ -3400,9 +3393,9 @@ class PCExt(Criterion):
         return gini_index
 
     @staticmethod
-    def _group_values(contingency_table, num_samples_per_value):
+    def _group_values(contingency_table, values_num_samples):
         """Groups values that have the same class probability vector."""
-        prob_matrix_transposed = np.divide(contingency_table.T, num_samples_per_value)
+        prob_matrix_transposed = np.divide(contingency_table.T, values_num_samples)
         prob_matrix = prob_matrix_transposed.T
         row_order = np.lexsort(prob_matrix_transposed[::-1])
         compared_index = row_order[0]
@@ -3419,7 +3412,7 @@ class PCExt(Criterion):
         new_num_samples_per_value = np.zeros((new_num_values), dtype=int)
         for new_index, old_indices in enumerate(new_index_to_old):
             new_contingency_table[new_index] = np.sum(contingency_table[old_indices, :], axis=0)
-            new_num_samples_per_value[new_index] = np.sum(num_samples_per_value[old_indices])
+            new_num_samples_per_value[new_index] = np.sum(values_num_samples[old_indices])
         return new_contingency_table, new_num_samples_per_value, new_index_to_old
 
     @staticmethod
@@ -3434,13 +3427,13 @@ class PCExt(Criterion):
         return left_old_values, right_old_values
 
     @classmethod
-    def _get_principal_component(cls, num_samples, contingency_table, num_samples_per_value):
+    def _get_principal_component(cls, num_samples, contingency_table, values_num_samples):
         """Returns the principal component of the weighted covariance matrix."""
         num_samples_per_class = cls._get_num_samples_per_class(contingency_table)
         avg_prob_per_class = np.divide(num_samples_per_class, num_samples)
-        prob_matrix = contingency_table / num_samples_per_value[:, None]
+        prob_matrix = contingency_table / values_num_samples[:, None]
         diff_prob_matrix = (prob_matrix - avg_prob_per_class).T
-        weight_diff_prob = diff_prob_matrix * num_samples_per_value[None, :]
+        weight_diff_prob = diff_prob_matrix * values_num_samples[None, :]
         weighted_squared_diff_prob_matrix = np.dot(weight_diff_prob, diff_prob_matrix.T)
         weighted_covariance_matrix = (1/(num_samples - 1)) * weighted_squared_diff_prob_matrix
         eigenvalues, eigenvectors = np.linalg.eigh(weighted_covariance_matrix)
