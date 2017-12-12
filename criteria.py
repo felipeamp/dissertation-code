@@ -3543,8 +3543,10 @@ class ConditionalInferenceTreePCExt(Criterion):
         if best_splits_per_attrib:
             best_split = max(best_splits_per_attrib, key=lambda split: split.criterion_value)
             # Let's find the best split for this attribute using the PC-ext criterion.
-            contingency_table = tree_node.contingency_tables[attrib_index].contingency_table
-            values_num_samples = tree_node.contingency_tables[attrib_index].values_num_samples
+            contingency_table = tree_node.contingency_tables[
+                best_split.attrib_index].contingency_table
+            values_num_samples = tree_node.contingency_tables[
+                best_split.attrib_index].values_num_samples
             (new_contingency_table,
              new_num_samples_per_value,
              new_index_to_old) = cls._group_values(contingency_table, values_num_samples)
