@@ -3597,8 +3597,9 @@ class ConditionalInferenceTreePCExt(Criterion):
              best_right_old_values) = cls._change_split_to_use_old_values(best_left_values,
                                                                           best_right_values,
                                                                           new_index_to_old)
-            best_split.splits_values = [best_left_old_values, best_right_old_values]
-            return best_split
+            return Split(attrib_index=best_split.attrib_index,
+                         splits_values=[best_left_old_values, best_right_old_values],
+                         criterion_value=best_split.criterion_value)
         return Split()
 
     @classmethod
