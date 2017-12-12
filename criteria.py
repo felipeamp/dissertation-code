@@ -3392,28 +3392,57 @@ class PCExt(Criterion):
             gini_index -= (curr_class_num_samples / num_split_samples)**2
         return gini_index
 
-    @staticmethod
-    def _group_values(contingency_table, values_num_samples):
-        """Groups values that have the same class probability vector."""
-        prob_matrix_transposed = np.divide(contingency_table.T, values_num_samples)
+    @classmethod
+    def _group_values(cls, contingency_table, values_num_samples):
+        """Groups values that have the same class probability vector. Remove empty values."""
+        (interm_to_orig_value_int,
+         interm_contingency_table,
+         interm_values_num_samples) = cls._remove_empty_values(contingency_table,
+                                                               values_num_samples)
+        prob_matrix_transposed = np.divide(interm_contingency_table.T, interm_values_num_samples)
         prob_matrix = prob_matrix_transposed.T
         row_order = np.lexsort(prob_matrix_transposed[::-1])
         compared_index = row_order[0]
-        new_index_to_old = [[compared_index]]
-        for index in row_order[1:]:
-            if np.allclose(prob_matrix[compared_index], prob_matrix[index]):
-                new_index_to_old[-1].append(index)
+        new_index_to_old = [[interm_to_orig_value_int[compared_index]]]
+        for mid_index in row_order[1:]:
+            if np.allclose(prob_matrix[compared_index], prob_matrix[mid_index]):
+                new_index_to_old[-1].append(interm_to_orig_value_int[mid_index])
             else:
-                compared_index = index
-                new_index_to_old.append([compared_index])
+                compared_index = mid_index
+                new_index_to_old.append([interm_to_orig_value_int[compared_index]])
         new_num_values = len(new_index_to_old)
-        num_classes = contingency_table.shape[1]
+        num_classes = interm_contingency_table.shape[1]
         new_contingency_table = np.zeros((new_num_values, num_classes), dtype=int)
         new_num_samples_per_value = np.zeros((new_num_values), dtype=int)
         for new_index, old_indices in enumerate(new_index_to_old):
             new_contingency_table[new_index] = np.sum(contingency_table[old_indices, :], axis=0)
             new_num_samples_per_value[new_index] = np.sum(values_num_samples[old_indices])
         return new_contingency_table, new_num_samples_per_value, new_index_to_old
+
+    @staticmethod
+    def _remove_empty_values(contingency_table, values_num_samples):
+        # Define conversion from original values to new values
+        orig_to_new_value_int = {}
+        new_to_orig_value_int = []
+        for orig_value, curr_num_samples in enumerate(values_num_samples):
+            if curr_num_samples > 0:
+                orig_to_new_value_int[orig_value] = len(new_to_orig_value_int)
+                new_to_orig_value_int.append(orig_value)
+
+        # Generate the new contingency tables
+        new_contingency_table = np.zeros((len(new_to_orig_value_int), contingency_table.shape[1]),
+                                         dtype=int)
+        new_value_num_seen = np.zeros((len(new_to_orig_value_int)), dtype=int)
+        for orig_value, curr_num_samples in enumerate(values_num_samples):
+            if curr_num_samples > 0:
+                curr_new_value = orig_to_new_value_int[orig_value]
+                new_value_num_seen[curr_new_value] = curr_num_samples
+                np.copyto(dst=new_contingency_table[curr_new_value, :],
+                          src=contingency_table[orig_value, :])
+
+        return (new_to_orig_value_int,
+                new_contingency_table,
+                new_value_num_seen)
 
     @staticmethod
     def _change_split_to_use_old_values(new_left, new_right, new_index_to_old):
@@ -3449,3 +3478,355 @@ class PCExt(Criterion):
             for class_index in range(num_classes):
                 num_samples_per_class[class_index] += contingency_table[value, class_index]
         return num_samples_per_class
+
+
+
+#################################################################################################
+#################################################################################################
+###                                                                                           ###
+###                             CONDITIONAL INFERENCE TREE PC-ext                             ###
+###                                                                                           ###
+#################################################################################################
+#################################################################################################
+
+
+class ConditionalInferenceTreePCExt(Criterion):
+    """
+    Conditional Inference Tree using PC-ext criterion to find best split. For reference,
+    see "Unbiased Recursive Partitioning: A Conditional Inference Framework, T. Hothorn, K. Hornik
+    & A. Zeileis. Journal of Computational and Graphical Statistics Vol. 15 , Iss. 3,2006".
+    """
+    name = 'Conditional Inference Tree PC-ext'
+
+    @classmethod
+    def select_best_attribute_and_split(cls, tree_node):
+        """Returns the best attribute and its best split, using the Conditional Inference Tree
+        Framework to choose the best attribute and using the PC-ext criterion to find the
+        best split for it.
+
+        Args:
+          tree_node (TreeNode): tree node where we want to find the best attribute/split.
+
+        Returns the best split found.
+        """
+        best_splits_per_attrib = []
+        use_chi2 = False
+        for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+            if is_valid_attrib and cls._is_big_contingency_table(
+                    tree_node.contingency_tables[attrib_index].values_num_samples,
+                    tree_node.class_index_num_samples):
+                use_chi2 = True
+                break
+        if use_chi2: # Use Chi²-test
+            for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+                if is_valid_attrib:
+                    curr_chi2_cdf = cls._calculate_c_quad_cdf(
+                        tree_node.contingency_tables[attrib_index].contingency_table,
+                        tree_node.contingency_tables[attrib_index].values_num_samples,
+                        tree_node.class_index_num_samples,
+                        len(tree_node.valid_samples_indices))
+                    # Split will be calculated later
+                    best_splits_per_attrib.append(Split(attrib_index=attrib_index,
+                                                        splits_values=[],
+                                                        criterion_value=curr_chi2_cdf))
+        else: # Use Conditional Inference Trees' test
+            for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+                if is_valid_attrib:
+                    curr_c_quad_cdf = cls._calculate_c_quad_cdf(
+                        tree_node.contingency_tables[attrib_index].contingency_table,
+                        tree_node.contingency_tables[attrib_index].values_num_samples,
+                        tree_node.class_index_num_samples,
+                        len(tree_node.valid_samples_indices))
+                    # Split will be calculated later
+                    best_splits_per_attrib.append(Split(attrib_index=attrib_index,
+                                                        splits_values=[],
+                                                        criterion_value=curr_c_quad_cdf))
+        if best_splits_per_attrib:
+            best_split = max(best_splits_per_attrib, key=lambda split: split.criterion_value)
+            # Let's find the best split for this attribute using the PC-ext criterion.
+            contingency_table = tree_node.contingency_tables[attrib_index].contingency_table
+            values_num_samples = tree_node.contingency_tables[attrib_index].values_num_samples
+            (new_contingency_table,
+             new_num_samples_per_value,
+             new_index_to_old) = cls._group_values(contingency_table, values_num_samples)
+            principal_component = cls._get_principal_component(
+                len(tree_node.valid_samples_indices),
+                new_contingency_table,
+                new_num_samples_per_value)
+            inner_product_results = np.dot(principal_component, new_contingency_table.T)
+            new_indices_order = inner_product_results.argsort()
+
+            best_gini = float('+inf')
+            best_left_values = set()
+            best_right_values = set()
+            left_values = set()
+            right_values = set(new_indices_order)
+            for metaindex, first_right in enumerate(new_indices_order):
+                curr_split_impurity = cls._calculate_split_gini_index(
+                    new_contingency_table,
+                    new_num_samples_per_value,
+                    left_values,
+                    right_values)
+                if curr_split_impurity < best_gini:
+                    best_gini = curr_split_impurity
+                    best_left_values = set(left_values)
+                    best_right_values = set(right_values)
+                if left_values: # extended splits
+                    last_left = new_indices_order[metaindex - 1]
+                    left_values.remove(last_left)
+                    right_values.add(last_left)
+                    right_values.remove(first_right)
+                    left_values.add(first_right)
+                    curr_ext_split_impurity = cls._calculate_split_gini_index(
+                        new_contingency_table,
+                        new_num_samples_per_value,
+                        left_values,
+                        right_values)
+                    if curr_ext_split_impurity < best_gini:
+                        best_gini = curr_split_impurity
+                        best_left_values = set(left_values)
+                        best_right_values = set(right_values)
+                    right_values.remove(last_left)
+                    left_values.add(last_left)
+                    left_values.remove(first_right)
+                    right_values.add(first_right)
+                right_values.remove(first_right)
+                left_values.add(first_right)
+            (best_left_old_values,
+             best_right_old_values) = cls._change_split_to_use_old_values(best_left_values,
+                                                                          best_right_values,
+                                                                          new_index_to_old)
+            best_split.splits_values = [best_left_old_values, best_right_old_values]
+            return best_split
+        return Split()
+
+    @classmethod
+    def _is_big_contingency_table(cls, values_num_samples, class_index_num_samples):
+        num_values_seen = sum(value_num_samples > 0 for value_num_samples in values_num_samples)
+        num_classes_seen = sum(class_num_samples > 0
+                               for class_num_samples in class_index_num_samples)
+        return num_values_seen * num_classes_seen > BIG_CONTINGENCY_TABLE_THRESHOLD
+
+    @classmethod
+    def _get_chi_square_test_p_value(cls, contingency_table, values_num_samples,
+                                     class_index_num_samples):
+        classes_seen = set(class_index for class_index, class_num_samples
+                           in enumerate(class_index_num_samples) if class_num_samples > 0)
+        num_classes = len(classes_seen)
+        if num_classes == 1:
+            return 0.0
+
+        num_values = sum(num_samples > 0 for num_samples in values_num_samples)
+        num_samples = sum(num_samples for num_samples in values_num_samples)
+        curr_chi_square_value = 0.0
+        for value, value_num_sample in enumerate(values_num_samples):
+            if value_num_sample == 0:
+                continue
+            for class_index in classes_seen:
+                expected_value_class = (
+                    values_num_samples[value] * class_index_num_samples[class_index] / num_samples)
+                diff = contingency_table[value][class_index] - expected_value_class
+                curr_chi_square_value += diff * (diff / expected_value_class)
+        return 1. - scipy.stats.chi2.cdf(x=curr_chi_square_value,
+                                         df=((num_classes - 1) * (num_values - 1)))
+
+    @classmethod
+    def _calculate_c_quad_cdf(cls, contingency_table, values_num_samples, class_index_num_samples,
+                              num_valid_samples):
+        def _calculate_expected_value_h(class_index_num_samples, num_valid_samples):
+            return (1./num_valid_samples) * np.array(class_index_num_samples)
+
+        def _calculate_covariance_h(expected_value_h, class_index_num_samples, num_valid_samples):
+            num_classes = len(class_index_num_samples)
+            covariance_h = np.zeros((num_classes, num_classes))
+            for class_index, class_num_samples in enumerate(class_index_num_samples):
+                if class_num_samples:
+                    curr_class_one_hot_encoding = np.zeros((num_classes))
+                    curr_class_one_hot_encoding[class_index] = 1.
+                    diff = curr_class_one_hot_encoding - expected_value_h
+                    covariance_h += class_num_samples * np.outer(diff, diff)
+            return covariance_h / num_valid_samples
+
+        def _calculate_mu_j(values_num_samples, expected_value_h):
+            return np.outer(values_num_samples, expected_value_h).flatten(order='F')
+
+        def _calculate_sigma_j(values_num_samples, num_valid_samples, covariance_h):
+            values_num_samples_correct_dim = values_num_samples.reshape(
+                (values_num_samples.shape[0], 1))
+            return (((num_valid_samples / (num_valid_samples - 1))
+                     * np.kron(covariance_h, np.diag(values_num_samples)))
+                    - ((1 / (num_valid_samples - 1))
+                       * np.kron(covariance_h,
+                                 np.kron(values_num_samples_correct_dim,
+                                         values_num_samples_correct_dim.transpose()))))
+
+
+        expected_value_h = _calculate_expected_value_h(class_index_num_samples, num_valid_samples)
+        covariance_h = _calculate_covariance_h(expected_value_h,
+                                               class_index_num_samples,
+                                               num_valid_samples)
+        mu_j = _calculate_mu_j(values_num_samples, expected_value_h)
+        sigma_j = _calculate_sigma_j(values_num_samples, num_valid_samples, covariance_h)
+
+        temp_diff = contingency_table.flatten(order='F') - mu_j
+
+        curr_rcond = 1e-15
+        while True:
+            try:
+                sigma_j_pinv = np.linalg.pinv(sigma_j)
+                sigma_j_rank = np.linalg.matrix_rank(sigma_j)
+                break
+            except np.linalg.linalg.LinAlgError:
+                # Happens when sigma_j is (very) badly conditioned
+                pass
+            try:
+                (sigma_j_pinv, sigma_j_rank) = scipy.linalg.pinv(sigma_j, return_rank=True)
+                break
+            except:
+                # Happens when sigma_j is (very) badly conditioned
+                curr_rcond *= 10.
+                if curr_rcond > 1e-6:
+                    # We give up on this attribute
+                    print('Warning: attribute has sigma_j matrix that is not decomposable in SVD.')
+                    return float('-inf')
+
+        c_quad = np.dot(temp_diff, np.dot(sigma_j_pinv, temp_diff.transpose()))
+        return scipy.stats.chi2.cdf(x=c_quad, df=sigma_j_rank)
+
+    @staticmethod
+    def _remove_empty_values(contingency_table, values_num_samples):
+        # Define conversion from original values to new values
+        orig_to_new_value_int = {}
+        new_to_orig_value_int = []
+        for orig_value, curr_num_samples in enumerate(values_num_samples):
+            if curr_num_samples > 0:
+                orig_to_new_value_int[orig_value] = len(new_to_orig_value_int)
+                new_to_orig_value_int.append(orig_value)
+
+        # Generate the new contingency tables
+        new_contingency_table = np.zeros((len(new_to_orig_value_int), contingency_table.shape[1]),
+                                         dtype=int)
+        new_value_num_seen = np.zeros((len(new_to_orig_value_int)), dtype=int)
+        for orig_value, curr_num_samples in enumerate(values_num_samples):
+            if curr_num_samples > 0:
+                curr_new_value = orig_to_new_value_int[orig_value]
+                new_value_num_seen[curr_new_value] = curr_num_samples
+                np.copyto(dst=new_contingency_table[curr_new_value, :],
+                          src=contingency_table[orig_value, :])
+
+        return (new_to_orig_value_int,
+                new_contingency_table,
+                new_value_num_seen)
+
+    @classmethod
+    def _group_values(cls, contingency_table, values_num_samples):
+        """Groups values that have the same class probability vector. Remove empty values."""
+        (interm_to_orig_value_int,
+         interm_contingency_table,
+         interm_values_num_samples) = cls._remove_empty_values(contingency_table,
+                                                               values_num_samples)
+        prob_matrix_transposed = np.divide(interm_contingency_table.T, interm_values_num_samples)
+        prob_matrix = prob_matrix_transposed.T
+        row_order = np.lexsort(prob_matrix_transposed[::-1])
+        compared_index = row_order[0]
+        new_index_to_old = [[interm_to_orig_value_int[compared_index]]]
+        for mid_index in row_order[1:]:
+            if np.allclose(prob_matrix[compared_index], prob_matrix[mid_index]):
+                new_index_to_old[-1].append(interm_to_orig_value_int[mid_index])
+            else:
+                compared_index = mid_index
+                new_index_to_old.append([interm_to_orig_value_int[compared_index]])
+        new_num_values = len(new_index_to_old)
+        num_classes = interm_contingency_table.shape[1]
+        new_contingency_table = np.zeros((new_num_values, num_classes), dtype=int)
+        new_num_samples_per_value = np.zeros((new_num_values), dtype=int)
+        for new_index, old_indices in enumerate(new_index_to_old):
+            new_contingency_table[new_index] = np.sum(contingency_table[old_indices, :], axis=0)
+            new_num_samples_per_value[new_index] = np.sum(values_num_samples[old_indices])
+        return new_contingency_table, new_num_samples_per_value, new_index_to_old
+
+    @classmethod
+    def _get_principal_component(cls, num_samples, contingency_table, values_num_samples):
+        """Returns the principal component of the weighted covariance matrix."""
+        num_samples_per_class = cls._get_num_samples_per_class(contingency_table)
+        avg_prob_per_class = np.divide(num_samples_per_class, num_samples)
+        prob_matrix = contingency_table / values_num_samples[:, None]
+        diff_prob_matrix = (prob_matrix - avg_prob_per_class).T
+        weight_diff_prob = diff_prob_matrix * values_num_samples[None, :]
+        weighted_squared_diff_prob_matrix = np.dot(weight_diff_prob, diff_prob_matrix.T)
+        weighted_covariance_matrix = (1/(num_samples - 1)) * weighted_squared_diff_prob_matrix
+        eigenvalues, eigenvectors = np.linalg.eigh(weighted_covariance_matrix)
+        index_largest_eigenvalue = np.argmax(np.square(eigenvalues))
+        return eigenvectors[:, index_largest_eigenvalue]
+
+    @staticmethod
+    def _get_num_samples_per_side(values_num_samples, left_values, right_values):
+        """Returns two sets, each containing the values of a split side."""
+        num_left_samples = sum(values_num_samples[value] for value in left_values)
+        num_right_samples = sum(values_num_samples[value] for value in right_values)
+        return  num_left_samples, num_right_samples
+
+    @staticmethod
+    def _get_num_samples_per_class_in_values(contingency_table, values):
+        """Returns a list, i-th entry contains the number of samples of class i."""
+        num_classes = contingency_table.shape[1]
+        num_samples_per_class = [0] * num_classes
+        for value in values:
+            for class_index in range(num_classes):
+                num_samples_per_class[class_index] += contingency_table[
+                    value, class_index]
+        return num_samples_per_class
+
+    @staticmethod
+    def _get_num_samples_per_class(contingency_table):
+        """Returns a list, i-th entry contains the number of samples of class i."""
+        num_values, num_classes = contingency_table.shape
+        num_samples_per_class = [0] * num_classes
+        for value in range(num_values):
+            for class_index in range(num_classes):
+                num_samples_per_class[class_index] += contingency_table[value, class_index]
+        return num_samples_per_class
+
+    @classmethod
+    def _calculate_split_gini_index(cls, contingency_table, values_num_samples, left_values,
+                                    right_values):
+        """Calculates the weighted Gini index of a split."""
+        num_left_samples, num_right_samples = cls._get_num_samples_per_side(
+            values_num_samples, left_values, right_values)
+        num_samples_per_class_left = cls._get_num_samples_per_class_in_values(
+            contingency_table, left_values)
+        num_samples_per_class_right = cls._get_num_samples_per_class_in_values(
+            contingency_table, right_values)
+        return cls._get_gini_value(num_samples_per_class_left, num_samples_per_class_right,
+                                   num_left_samples, num_right_samples)
+
+    @classmethod
+    def _get_gini_value(cls, num_samples_per_class_left, num_samples_per_class_right,
+                        num_left_samples, num_right_samples):
+        """Calculates the weighted Gini index of a split."""
+        num_samples = num_left_samples + num_right_samples
+        left_gini = cls._calculate_node_gini_index(num_left_samples, num_samples_per_class_left)
+        right_gini = cls._calculate_node_gini_index(num_right_samples, num_samples_per_class_right)
+        return ((num_left_samples / num_samples) * left_gini +
+                (num_right_samples / num_samples) * right_gini)
+
+    @staticmethod
+    def _calculate_node_gini_index(num_split_samples, num_samples_per_class_in_split):
+        """Calculates the Gini index of a node."""
+        if not num_split_samples:
+            return 1.0
+        gini_index = 1.0
+        for curr_class_num_samples in num_samples_per_class_in_split:
+            gini_index -= (curr_class_num_samples / num_split_samples)**2
+        return gini_index
+
+    @staticmethod
+    def _change_split_to_use_old_values(new_left, new_right, new_index_to_old):
+        """Change split values to use indices of original contingency table."""
+        left_old_values = set()
+        for new_index in new_left:
+            left_old_values |= set(new_index_to_old[new_index])
+        right_old_values = set()
+        for new_index in new_right:
+            right_old_values |= set(new_index_to_old[new_index])
+        return left_old_values, right_old_values
