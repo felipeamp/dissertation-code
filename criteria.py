@@ -3224,13 +3224,21 @@ class PCExt(Criterion):
                 (new_contingency_table,
                  new_num_samples_per_value,
                  new_index_to_old) = cls._group_values(contingency_table, values_num_samples)
-
                 principal_component = cls._get_principal_component(
                     len(tree_node.valid_samples_indices),
                     new_contingency_table,
                     new_num_samples_per_value)
                 inner_product_results = np.dot(principal_component, new_contingency_table.T)
                 new_indices_order = inner_product_results.argsort()
+                # DEBUG
+                print("contingency_table:", contingency_table)
+                print("values_num_samples:", values_num_samples)
+                print("new_contingency_table:", new_contingency_table)
+                print("new_num_samples_per_value:", new_num_samples_per_value)
+                print("new_index_to_old:", new_index_to_old)
+                print("principal_component:", principal_component)
+                print("inner_product_results:", inner_product_results)
+                print("new_indices_order:", new_indices_order)
 
                 best_gini = float('+inf')
                 best_left_values = set()
@@ -3259,7 +3267,7 @@ class PCExt(Criterion):
                             left_values,
                             right_values)
                         if curr_ext_split_impurity < best_gini:
-                            best_gini = curr_split_impurity
+                            best_gini = curr_ext_split_impurity
                             best_left_values = set(left_values)
                             best_right_values = set(right_values)
                         right_values.remove(last_left)
@@ -3369,6 +3377,11 @@ class PCExt(Criterion):
             contingency_table, left_values)
         num_samples_per_class_right = cls._get_num_samples_per_class_in_values(
             contingency_table, right_values)
+        # DEBUG:
+        print("num_left_samples:", num_left_samples)
+        print("num_right_samples:", num_right_samples)
+        print("num_samples_per_class_left:", num_samples_per_class_left)
+        print("num_samples_per_class_right:", num_samples_per_class_right)
         return cls._get_gini_value(num_samples_per_class_left, num_samples_per_class_right,
                                    num_left_samples, num_right_samples)
 
@@ -3379,6 +3392,11 @@ class PCExt(Criterion):
         num_samples = num_left_samples + num_right_samples
         left_gini = cls._calculate_node_gini_index(num_left_samples, num_samples_per_class_left)
         right_gini = cls._calculate_node_gini_index(num_right_samples, num_samples_per_class_right)
+        # DEBUG:
+        print("left_gini:", left_gini)
+        print("right_gini:", right_gini)
+        print("child_gini:", ((num_left_samples / num_samples) * left_gini +
+                              (num_right_samples / num_samples) * right_gini))
         return ((num_left_samples / num_samples) * left_gini +
                 (num_right_samples / num_samples) * right_gini)
 
@@ -3583,7 +3601,7 @@ class ConditionalInferenceTreePCExt(Criterion):
                         left_values,
                         right_values)
                     if curr_ext_split_impurity < best_gini:
-                        best_gini = curr_split_impurity
+                        best_gini = curr_ext_split_impurity
                         best_left_values = set(left_values)
                         best_right_values = set(right_values)
                     right_values.remove(last_left)
