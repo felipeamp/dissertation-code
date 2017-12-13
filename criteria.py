@@ -3291,7 +3291,7 @@ class PCExt(Criterion):
                           splits_values=[{last_left_value}, {first_right_value}],
                           criterion_value=best_gini))
         if best_splits_per_attrib:
-            return max(best_splits_per_attrib, key=lambda split: split.criterion_value)
+            return min(best_splits_per_attrib, key=lambda split: split.criterion_value)
         return Split()
 
     @staticmethod
@@ -3403,11 +3403,11 @@ class PCExt(Criterion):
         row_order = np.lexsort(prob_matrix_transposed[::-1])
         compared_index = row_order[0]
         new_index_to_old = [[interm_to_orig_value_int[compared_index]]]
-        for mid_index in row_order[1:]:
-            if np.allclose(prob_matrix[compared_index], prob_matrix[mid_index]):
-                new_index_to_old[-1].append(interm_to_orig_value_int[mid_index])
+        for interm_index in row_order[1:]:
+            if np.allclose(prob_matrix[compared_index], prob_matrix[interm_index]):
+                new_index_to_old[-1].append(interm_to_orig_value_int[interm_index])
             else:
-                compared_index = mid_index
+                compared_index = interm_index
                 new_index_to_old.append([interm_to_orig_value_int[compared_index]])
         new_num_values = len(new_index_to_old)
         num_classes = interm_contingency_table.shape[1]
