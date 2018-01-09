@@ -1,0 +1,43 @@
+{
+    "datasets basepath": "./datasets",
+    "use all datasets": false,
+    "load one dataset at a time": false,
+    "datasets folders": [
+        "shelter animal outcomes 15 classes",
+        "san francisco crime 15 classes",
+        "reuters phonemes 10000 samples 15 classes"
+    ],
+
+    "criteria": [
+        "Twoing",
+        "GW Squared Gini",
+        "GW Chi Square",
+        "LS Squared Gini",
+        "LS Chi Square",
+        "PC-ext"
+    ],
+
+    "use numeric attributes": false,
+
+    "output folder": "./outputs/depth_5/cv_without_numeric_new_datasets_only_gw_shelter_start_on_3",
+
+    "num trials": 20,
+    "starting seed index": 1,
+    "calculate t-test on accuracy": true,
+    "t-test single-sided p-value": 0.05,
+
+    "max depth": 5,
+    "rank attributes": false,
+    "use cross-validation": true,
+    "num folds": 3,
+    "is stratified": true,
+
+    "prunning parameters": {
+        "use chi-sq test": true,
+        "max chi-sq p-value": 0.1,
+        "second most freq value min samples": 15,
+
+        "min num samples allowed": [1],
+        "use second most freq class min samples": false
+    }
+}

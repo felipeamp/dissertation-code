@@ -1,0 +1,85 @@
+Dataset,Attribute,Criterion Difference Name,Paired t-statistics on Accuracy with Missing Values,Degrees of Freedom of Accuracy with Missing Values,P-value t-statistics on Accuracy with Missing Values,Paired t-statistics on Accuracy without Missing Values,Degrees of Freedom of Accuracy without Missing Values,P-value t-statistics on Accuracy without Missing Values,Paired t-statistics on Number of Nodes,Degrees of Freedom of Number of Nodes,P-value t-statistics on Number of Nodes
+Contraceptive with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,2.6902100539487,19,0.0072459904205,2.665121430648513,19,0.00764799896929,2.4833486787930825,19,0.011258124278
+Contraceptive with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,2.0298345872364743,19,0.0283069852916,1.9978774661028051,19,0.0301249298628,2.3192919156685576,19,0.0158366847007
+Contraceptive with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,0.20956944616864337,19,0.418117225085,-3.5852013860075415e-05,19,0.500014116007,3.7716559494456,19,0.000645305850691
+Contraceptive with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-0.8446283341706011,19,0.795585850307,-0.8524966793333492,19,0.797721527116,0.20803889592876362,19,0.418706192856
+Contraceptive with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-2.351246575636825,19,0.985172383155,-2.452892115253407,19,0.987998537339,2.0899815084413285,19,0.0251508586357
+Contraceptive with Aggreg,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-2.1447237435097324,19,0.977441142125,-2.302205788435188,19,0.983598030544,1.5937712984765817,19,0.063743622005
+KDD98 Multiclass 5,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Squared Gini,-2.037828389447381,19,0.972132070343,-4.5025615471659295,19,0.999878118246,-2.862235605532888,19,0.995014227608
+KDD98 Multiclass 5,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-0.22083292512181255,19,0.586210859439,-2.562012943122982,19,0.99046670949,5.790875039856069,19,7.01742135623e-06
+KDD98 Multiclass 5,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,1.9302708468506193,19,0.0343188090972,2.139499683003341,19,0.0227952942948,6.676556980903073,19,1.09981576257e-06
+KDD98 Multiclass 2,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,9.867907608666451,19,3.25869653484e-09,1.0002748714412506,19,0.164873611013,-20.487733487574733,19,1.0
+KDD98 Multiclass 2,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,9.5239843545435,19,5.73904723744e-09,1.000300419570526,19,0.164867590015,-19.3475749542877,19,1.0
+KDD98 Multiclass 2,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,4.457724799389259,19,0.000134941629783,1.0001769517745074,19,0.164896689437,-9.919791825511636,19,0.999999997004
+KDD98 Multiclass 2,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,0.8086197064476648,19,0.214371746091,0.7788195769633702,19,0.2228390796,-1.8042296847218031,19,0.956463544297
+KDD98 Multiclass 2,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-2.532140734242884,19,0.989843304286,-3.2160272432243224,19,0.997726124085,9.18351087023653,19,1.01887844828e-08
+KDD98 Multiclass 2,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-3.646237767077417,19,0.999141105145,-4.4694077410199595,19,0.999868591741,11.319939776083073,19,3.44757000725e-10
+Cover Type,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,-7.704462362892757,19,0.999999854104,-7.704462362892757,19,0.999999854104,-23.935811600064284,19,1.0
+Nursery with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-7.704462362892757,19,0.999999854104,-7.704462362892757,19,0.999999854104,-23.935811600064284,19,1.0
+Nursery with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-7.103298620387099,19,0.999999532707,-7.103298620387099,19,0.999999532707,-16.479934323112992,19,0.999999999999
+Nursery with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,1.4507354421483123,19,0.0815817355657,1.4507354421483123,19,0.0815817355657,1.4529663145135576,19,0.0812749995149
+Nursery with Aggreg,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,1.4507354421483123,19,0.0815817355657,1.4507354421483123,19,0.0815817355657,1.4529663145135576,19,0.0812749995149
+Contraceptive,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,2.7095537592451837,19,0.00694984861223,2.6988550346030435,19,0.00711218530261,5.552280123467326,19,1.17562266494e-05
+Contraceptive,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,1.837096396894098,19,0.0409446788722,1.8371023508410267,19,0.0409442218665,5.03978946054727,19,3.6373164459e-05
+Contraceptive,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,1.6961735630857624,19,0.0530883762172,1.7316439951568985,19,0.0497711649257,3.275875963931277,19,0.0019877592217
+Contraceptive,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-1.6246018522760954,19,0.939639515341,-1.624050275258759,19,0.939580348012,-1.4529663145404645,19,0.918725000489
+Contraceptive,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-1.3964765044804694,19,0.910663641635,-1.363258107488811,19,0.905630592556,-0.8380087868772427,19,0.793777938535
+Contraceptive,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-0.3068354599921361,19,0.618846993405,-0.2787200272454221,19,0.608264686369,-0.43808582709770166,19,0.666867931144
+Adult Census Income,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,10.298527953360347,19,1.63498348194e-09,10.232912902025445,19,1.81374670838e-09,12.748942898201392,19,4.6287529365e-11
+Adult Census Income,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-11.051933056222598,19,0.999999999487,-11.362777162235624,19,0.999999999676,11.250605067341558,19,3.81889408985e-10
+Adult Census Income,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-2.2437746094624975,19,0.981521044905,-2.3184822087838204,19,0.984136938789,12.002249319141278,19,1.29135258042e-10
+Adult Census Income,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-13.575010429735448,19,0.999999999984,-13.56413223019436,19,0.999999999984,-0.8897565210056979,19,0.807637884785
+Adult Census Income,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-11.14436265221816,19,0.999999999553,-11.096000765945314,19,0.999999999519,0.22029818410290566,19,0.413994368256
+Adult Census Income,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,2.971611126119633,19,0.00391940344846,3.042813024198184,19,0.00334749101648,1.1988962615581906,19,0.122653909076
+KDD98 Multiclass 9,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,1.4321211100275038,19,0.0841780263829,3.5799275559628576,19,0.000998801333487,1.5537409349513318,19,0.0683726323357
+KDD98 Multiclass 9,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,0.743370111258315,19,0.233175542798,2.1858358313450044,19,0.0207747280117,-1.9833310515840148,19,0.969013467756
+KDD98 Multiclass 9,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-1.0872222187517737,19,0.854730395619,-0.06408822368125144,19,0.525215274232,3.4524599085787506,19,0.00133400591459
+KDD98 Multiclass 9,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-0.8180265571244564,19,0.788258599823,-1.9961210110039047,19,0.969772183616,-3.342516087180867,19,0.998289423949
+KDD98 Multiclass 9,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-3.149344114435462,19,0.997359864454,-4.025729584614346,19,0.999638770188,2.6285149627109985,19,0.00827275065858
+KDD98 Multiclass 9,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-2.779288503106649,19,0.994024818833,-2.8800334488876493,19,0.995204997692,5.69359830083057,19,8.65346689638e-06
+Cars with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,-13.220397608441885,19,0.999999999975,-13.220397608441885,19,0.999999999975,34.41414437901468,19,0.0
+Cars with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-12.937751423552767,19,0.999999999964,-12.937751423552767,19,0.999999999964,40.0792255438444,19,0.0
+Cars with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-14.274341354158448,19,0.999999999993,-14.274341354158448,19,0.999999999993,39.257219849930195,19,0.0
+Cars with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-0.48283416858772005,19,0.682635023588,-0.48283416858772005,19,0.682635023588,2.0323471117532543,19,0.0281683207229
+Cars with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-0.9163314318057141,19,0.814511054746,-0.9163314318057141,19,0.814511054746,2.8960986495130334,19,0.00462884943589
+Cars with Aggreg,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-0.7606234930623048,19,0.771890830696,-0.7606234930623048,19,0.771890830696,2.015114392786882,19,0.0291317737037
+Mushroom,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,38.857834382592834,19,0.0,38.50723324692125,19,0.0,46.97399381795238,19,0.0
+Mushroom,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,36.297927314775,19,0.0,36.044160906091584,19,0.0,55.07127551177759,19,0.0
+Mushroom,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,11.272338805600507,19,3.69819730395e-10,11.259080445949948,19,3.77134434792e-10,23.246486651436825,19,9.99200722163e-16
+Mushroom,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-10.499434678738094,19,0.999999998807,-10.750957200007884,19,0.99999999919,1.8019963959976484,19,0.0437176488368
+Mushroom,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-9.591273684028128,19,0.999999994868,-9.573497563763294,19,0.999999994715,-3.457340920283722,19,0.998680668384
+Mushroom,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-8.889513391098543,19,0.999999983085,-8.884640506565349,19,0.99999998294,-4.083122448713547,19,0.999683147845
+Cars,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,-8.27782993136157,19,0.999999949718,-8.27782993136157,19,0.999999949718,35.46041377157412,19,0.0
+Cars,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-9.67142321037359,19,0.999999995505,-9.67142321037359,19,0.999999995505,36.12762047707713,19,0.0
+Cars,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-10.266603130497032,19,0.99999999828,-10.266603130497032,19,0.99999999828,35.84774297989968,19,0.0
+Cars,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-0.6064404462842855,19,0.724299943825,-0.6064404462842855,19,0.724299943825,1.0,19,0.164938400461
+Cars,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-1.7081932353155505,19,0.948056346646,-1.7081932353155505,19,0.948056346646,1.5841193017391089,19,0.0648349953868
+Cars,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,-1.2853691738343043,19,0.892944635302,-1.2853691738343043,19,0.892944635302,1.3011799671086903,19,0.104377744641
+Poker Hand,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,-2.511160459108936,19,0.989382729377,-2.511160459108936,19,0.989382729377,0.6011259686089904,19,0.2774303488
+Poker Hand,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-4.849690176620597,19,0.999944343067,-4.849690176620597,19,0.999944343067,0.9999999999968339,19,0.164938400461
+Poker Hand,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-3.820438127975374,19,0.9994226854,-3.820438127975374,19,0.9994226854,3.693319878456571,19,0.000771530881313
+Poker Hand,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,-2.1268322785694,19,0.976622002226,-2.1268322785694,19,0.976622002226,0.7913785384015021,19,0.219245739234
+Poker Hand,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,-1.0319909530012128,19,0.842482683221,-1.0319909530012128,19,0.842482683221,4.077376607560262,19,0.000321037065389
+Poker Hand,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,1.1186452534809188,19,0.138617846451,1.1186452534809188,19,0.138617846451,3.5199251722625893,19,0.00114470986402
+Nursery,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,-6.823631155537962,19,0.999999183416,-6.823631155537962,19,0.999999183416,-23.935811600064284,19,1.0
+Nursery,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,-6.823631155537962,19,0.999999183416,-6.823631155537962,19,0.999999183416,-23.935811600064284,19,1.0
+Nursery,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,-6.192156280411554,19,0.99999700721,-6.192156280411554,19,0.99999700721,-16.479934323112992,19,0.999999999999
+Nursery,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,1.4507354421483123,19,0.0815817355657,1.4507354421483123,19,0.0815817355657,1.4529663145135576,19,0.0812749995149
+Nursery,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,1.4507354421483123,19,0.0815817355657,1.4507354421483123,19,0.0815817355657,1.4529663145135576,19,0.0812749995149
+Cover Type with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Conditional Inference Tree PC-ext - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 3,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Squared Gini,-3.4293247776817326,19,0.998594223591,-5.663092818256856,19,0.999990756604,10.664741935681793,19,9.24092580235e-10
+KDD98 Multiclass 3,None,Conditional Inference Tree Twoing - Conditional Inference Tree LS Chi Square,1.7236813529342379,19,0.0504998917748,-0.1438311070225245,19,0.556425797091,11.897743121742815,19,1.49669387994e-10
+KDD98 Multiclass 3,None,Conditional Inference Tree LS Squared Gini - Conditional Inference Tree LS Chi Square,4.259825105399482,19,0.000211711392022,4.746557913195876,19,7.01905685855e-05,-2.4649831910213673,19,0.988298978667
