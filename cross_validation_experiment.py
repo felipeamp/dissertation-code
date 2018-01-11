@@ -212,6 +212,10 @@ def get_criteria(criteria_names_list):
             criteria_list.append(criteria.ConditionalInferenceTreeGWChiSquare())
         elif criterion_name == "Conditional Inference Tree PC-ext":
             criteria_list.append(criteria.ConditionalInferenceTreePCExt())
+        elif criterion_name == "Hypercube Cover":
+            criteria_list.append(criteria.HypercubeCover())
+        elif criterion_name == "Conditional Inference Tree Hypercube Cover":
+            criteria_list.append(criteria.ConditionalInferenceTreeHypercubeCover())
         else:
             print('Unkown criterion name:', criterion_name)
             print('Exiting.')
