@@ -13,13 +13,13 @@ Cars,None,LS Chi Square,1,1,0,1,1,5
 Cars,None,LS Squared Gini,6,6,5,0,0,1
 Cars,None,PC-ext,1,1,2,1,1,2
 Cars,None,Twoing,1,1,2,1,1,2
-Cars with Aggreg,None,GW Chi Square,4,4,3,0,0,3
-Cars with Aggreg,None,GW Squared Gini,0,0,5,0,0,1
-Cars with Aggreg,None,Hypercube Cover,0,0,0,2,2,4
-Cars with Aggreg,None,LS Chi Square,0,0,4,0,0,2
-Cars with Aggreg,None,LS Squared Gini,3,3,6,1,1,0
-Cars with Aggreg,None,PC-ext,0,0,0,2,2,4
-Cars with Aggreg,None,Twoing,0,0,0,2,2,4
+Cars with Aggreg,None,GW Chi Square,5,5,3,1,1,3
+Cars with Aggreg,None,GW Squared Gini,3,3,5,2,2,1
+Cars with Aggreg,None,Hypercube Cover,0,0,0,4,4,4
+Cars with Aggreg,None,LS Chi Square,6,6,4,0,0,2
+Cars with Aggreg,None,LS Squared Gini,3,3,6,2,2,0
+Cars with Aggreg,None,PC-ext,0,0,0,4,4,4
+Cars with Aggreg,None,Twoing,0,0,0,4,4,4
 Contraceptive,None,GW Chi Square,2,2,0,0,0,3
 Contraceptive,None,GW Squared Gini,0,1,5,0,0,1
 Contraceptive,None,Hypercube Cover,0,0,0,1,1,2
@@ -76,13 +76,13 @@ Nursery,None,LS Chi Square,0,0,1,4,4,2
 Nursery,None,LS Squared Gini,3,3,0,0,0,6
 Nursery,None,PC-ext,3,3,1,0,0,2
 Nursery,None,Twoing,3,3,1,0,0,2
-Nursery with Aggreg,None,GW Chi Square,2,2,6,2,2,0
-Nursery with Aggreg,None,GW Squared Gini,0,0,5,4,4,1
+Nursery with Aggreg,None,GW Chi Square,2,2,6,3,3,0
+Nursery with Aggreg,None,GW Squared Gini,0,0,5,5,5,1
 Nursery with Aggreg,None,Hypercube Cover,4,4,2,0,0,2
-Nursery with Aggreg,None,LS Chi Square,2,2,1,2,2,2
-Nursery with Aggreg,None,LS Squared Gini,0,0,0,4,4,6
+Nursery with Aggreg,None,LS Chi Square,2,2,1,3,3,2
+Nursery with Aggreg,None,LS Squared Gini,0,0,0,5,5,6
 Nursery with Aggreg,None,PC-ext,4,4,2,0,0,2
-Nursery with Aggreg,None,Twoing,0,0,1,0,0,4
+Nursery with Aggreg,None,Twoing,4,4,1,0,0,4
 Poker Hand,None,GW Chi Square,2,2,2,1,1,2
 Poker Hand,None,GW Squared Gini,1,1,0,5,5,4
 Poker Hand,None,Hypercube Cover,2,2,4,2,2,1
