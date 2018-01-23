@@ -74,7 +74,8 @@ San Francisco Crime 15 classes,None,LS Chi Square,0,0,0,4,4,0
 San Francisco Crime 15 classes,None,LS Squared Gini,1,1,0,3,3,0
 San Francisco Crime 15 classes,None,PC-ext,2,2,0,0,0,0
 San Francisco Crime 15 classes,None,Twoing,2,2,0,0,0,0
-Shelter Animal Outcomes 15 classes,None,LS Chi Square,1,1,0,2,2,0
-Shelter Animal Outcomes 15 classes,None,LS Squared Gini,0,0,0,3,3,0
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover,2,2,0,0,0,0
+Shelter Animal Outcomes 15 classes,None,LS Chi Square,1,1,0,3,3,0
+Shelter Animal Outcomes 15 classes,None,LS Squared Gini,0,0,0,4,4,0
 Shelter Animal Outcomes 15 classes,None,PC-ext,2,2,0,0,0,0
 Shelter Animal Outcomes 15 classes,None,Twoing,2,2,0,0,0,0
