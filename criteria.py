@@ -45,6 +45,7 @@ class Criterion(object):
         pass
 
 
+
 #################################################################################################
 #################################################################################################
 ###                                                                                           ###
@@ -4353,6 +4354,540 @@ class ConditionalInferenceTreeHypercubeCover(Criterion):
             for class_index in set_right_classes:
                 superclass_index_num_samples[1] += contingency_table[value][class_index]
                 superclass_contingency_table[value][1] += contingency_table[value][class_index]
+        return superclass_contingency_table, superclass_index_num_samples
+
+    @staticmethod
+    def _calculate_gini_index(side_num, class_num_side):
+        gini_index = 1.0
+        for curr_class_num_side in class_num_side:
+            if curr_class_num_side > 0:
+                gini_index -= (curr_class_num_side / side_num) ** 2
+        return gini_index
+
+    @classmethod
+    def _calculate_children_gini_index(cls, left_num, class_num_left, right_num, class_num_right):
+        left_split_gini_index = cls._calculate_gini_index(left_num, class_num_left)
+        right_split_gini_index = cls._calculate_gini_index(right_num, class_num_right)
+        children_gini_index = ((left_num * left_split_gini_index
+                                + right_num * right_split_gini_index)
+                               / (left_num + right_num))
+        return children_gini_index
+
+    @classmethod
+    def _two_class_trick(cls, class_index_num_samples, superclass_index_num_samples, values_seen,
+                         contingency_table, values_num_samples, superclass_contingency_table,
+                         num_total_valid_samples):
+        # TESTED!
+        def _get_non_empty_superclass_indices(superclass_index_num_samples):
+            # TESTED!
+            first_non_empty_superclass = None
+            second_non_empty_superclass = None
+            for superclass_index, superclass_num_samples in enumerate(superclass_index_num_samples):
+                if superclass_num_samples > 0:
+                    if first_non_empty_superclass is None:
+                        first_non_empty_superclass = superclass_index
+                    else:
+                        second_non_empty_superclass = superclass_index
+                        break
+            return first_non_empty_superclass, second_non_empty_superclass
+
+        def _calculate_value_class_ratio(values_seen, values_num_samples,
+                                         superclass_contingency_table, non_empty_class_indices):
+            # TESTED!
+            value_class_ratio = [] # [(value, ratio_on_second_class)]
+            second_class_index = non_empty_class_indices[1]
+            for curr_value in values_seen:
+                number_second_non_empty = superclass_contingency_table[
+                    curr_value][second_class_index]
+                value_class_ratio.append(
+                    (curr_value, number_second_non_empty / values_num_samples[curr_value]))
+            value_class_ratio.sort(key=lambda tup: tup[1])
+            return value_class_ratio
+
+
+        # We only need to sort values by the percentage of samples in second non-empty class with
+        # this value. The best split will be given by choosing an index to split this list of
+        # values in two.
+        (first_non_empty_superclass,
+         second_non_empty_superclass) = _get_non_empty_superclass_indices(
+             superclass_index_num_samples)
+        if first_non_empty_superclass is None or second_non_empty_superclass is None:
+            return (float('+inf'), {0}, set())
+
+        value_class_ratio = _calculate_value_class_ratio(values_seen,
+                                                         values_num_samples,
+                                                         superclass_contingency_table,
+                                                         (first_non_empty_superclass,
+                                                          second_non_empty_superclass))
+
+        best_split_children_gini_gain = float('+inf')
+        best_last_left_index = 0
+
+        num_right_samples = num_total_valid_samples
+        class_num_right = np.copy(class_index_num_samples)
+        num_left_samples = 0
+        class_num_left = np.zeros(class_num_right.shape, dtype=int)
+
+        for last_left_index, (last_left_value, _) in enumerate(value_class_ratio[:-1]):
+            num_samples_last_left_value = values_num_samples[last_left_value]
+            # num_samples_last_left_value > 0 always, since the values without samples were not
+            # added to the values_seen when created by cls._generate_value_to_index
+
+            num_left_samples += num_samples_last_left_value
+            num_right_samples -= num_samples_last_left_value
+            class_num_left += contingency_table[last_left_value]
+            class_num_right -= contingency_table[last_left_value]
+
+            curr_children_gini_index = cls._calculate_children_gini_index(num_left_samples,
+                                                                          class_num_left,
+                                                                          num_right_samples,
+                                                                          class_num_right)
+            if curr_children_gini_index < best_split_children_gini_gain:
+                best_split_children_gini_gain = curr_children_gini_index
+                best_last_left_index = last_left_index
+
+        # Let's get the values and split the indices corresponding to the best split found.
+        set_left_values = set(tup[0] for tup in value_class_ratio[:best_last_left_index + 1])
+        set_right_values = set(values_seen) - set_left_values
+
+        return (best_split_children_gini_gain, set_left_values, set_right_values)
+
+
+
+#################################################################################################
+#################################################################################################
+###                                                                                           ###
+###                                 LARGEST CLASS ALONE                                       ###
+###                                                                                           ###
+#################################################################################################
+#################################################################################################
+
+class LargestClassAlone(Criterion):
+    """Largest Class Alone criterion."""
+    name = 'Largest Class Alone'
+
+    @classmethod
+    def select_best_attribute_and_split(cls, tree_node):
+        """Returns the best attribute and its best split, according to the Hypercube Cover
+        criterion.
+
+        Args:
+          tree_node (TreeNode): tree node where we want to find the best attribute/split.
+
+        Returns the best split found.
+        """
+        best_splits_per_attrib = []
+        for (attrib_index,
+             (is_valid_nominal_attrib,
+              is_valid_numeric_attrib)) in enumerate(zip(tree_node.valid_nominal_attribute,
+                                                         tree_node.valid_numeric_attribute)):
+            if is_valid_nominal_attrib:
+                values_seen = cls._get_values_seen(
+                    tree_node.contingency_tables[attrib_index].values_num_samples)
+                largest_class_index, _ = max(
+                    enumerate(tree_node.class_index_num_samples), key=lambda x: x[1])
+                (superclass_contingency_table,
+                 superclass_index_num_samples) = cls._get_superclass_contingency_table(
+                     tree_node.contingency_tables[attrib_index].contingency_table,
+                     tree_node.contingency_tables[attrib_index].values_num_samples,
+                     tree_node.class_index_num_samples,
+                     largest_class_index)
+                (curr_gini_gain,
+                 left_values,
+                 right_values) = cls._two_class_trick(
+                     tree_node.class_index_num_samples,
+                     superclass_index_num_samples,
+                     values_seen,
+                     tree_node.contingency_tables[attrib_index].contingency_table,
+                     tree_node.contingency_tables[attrib_index].values_num_samples,
+                     superclass_contingency_table,
+                     len(tree_node.valid_samples_indices))
+                best_splits_per_attrib.append(
+                    Split(attrib_index=attrib_index,
+                          splits_values=[left_values, right_values],
+                          criterion_value=curr_gini_gain))
+            elif is_valid_numeric_attrib:
+                values_and_classes = cls._get_numeric_values_seen(tree_node.valid_samples_indices,
+                                                                  tree_node.dataset.samples,
+                                                                  tree_node.dataset.sample_class,
+                                                                  attrib_index)
+                values_and_classes.sort()
+                (best_gini,
+                 last_left_value,
+                 first_right_value) = cls._solve_for_numeric(
+                     values_and_classes,
+                     tree_node.dataset.num_classes)
+                best_splits_per_attrib.append(
+                    Split(attrib_index=attrib_index,
+                          splits_values=[{last_left_value}, {first_right_value}],
+                          criterion_value=best_gini))
+        if best_splits_per_attrib:
+            return min(best_splits_per_attrib, key=lambda split: split.criterion_value)
+        return Split()
+
+    @staticmethod
+    def _get_values_seen(values_num_samples):
+        values_seen = set()
+        for value, num_samples in enumerate(values_num_samples):
+            if num_samples > 0:
+                values_seen.add(value)
+        return values_seen
+
+    @staticmethod
+    def _get_superclass_contingency_table(contingency_table, values_num_samples,
+                                          class_index_num_samples, largest_classes_index):
+        superclass_contingency_table = np.array(
+            [contingency_table[:, largest_classes_index],
+             values_num_samples - contingency_table[:, largest_classes_index]
+            ]).T
+        superclass_index_num_samples = [
+            class_index_num_samples[largest_classes_index],
+            sum(class_index_num_samples) - class_index_num_samples[largest_classes_index]]
+        return superclass_contingency_table, superclass_index_num_samples
+
+    @staticmethod
+    def _get_numeric_values_seen(valid_samples_indices, sample, sample_class, attrib_index):
+        values_and_classes = []
+        for sample_index in valid_samples_indices:
+            sample_value = sample[sample_index][attrib_index]
+            values_and_classes.append((sample_value, sample_class[sample_index]))
+        return values_and_classes
+
+    @classmethod
+    def _solve_for_numeric(cls, sorted_values_and_classes, num_classes):
+        last_left_value = sorted_values_and_classes[0][0]
+        num_left_samples = 1
+        num_right_samples = len(sorted_values_and_classes) - 1
+
+        class_num_left = [0] * num_classes
+        class_num_left[sorted_values_and_classes[0][1]] = 1
+
+        class_num_right = [0] * num_classes
+        for _, sample_class in sorted_values_and_classes[1:]:
+            class_num_right[sample_class] += 1
+
+        best_gini = float('+inf')
+        best_last_left_value = None
+        best_first_right_value = None
+
+        for first_right_index in range(1, len(sorted_values_and_classes)):
+            first_right_value = sorted_values_and_classes[first_right_index][0]
+            if first_right_value != last_left_value:
+                gini_value = cls._calculate_children_gini_index(num_left_samples,
+                                                                class_num_left,
+                                                                num_right_samples,
+                                                                class_num_right)
+                if gini_value < best_gini:
+                    best_gini = gini_value
+                    best_last_left_value = last_left_value
+                    best_first_right_value = first_right_value
+
+                last_left_value = first_right_value
+
+            num_left_samples += 1
+            num_right_samples -= 1
+            first_right_class = sorted_values_and_classes[first_right_index][1]
+            class_num_left[first_right_class] += 1
+            class_num_right[first_right_class] -= 1
+        return (best_gini, best_last_left_value, best_first_right_value)
+
+    @staticmethod
+    def _calculate_gini_index(side_num, class_num_side):
+        gini_index = 1.0
+        for curr_class_num_side in class_num_side:
+            if curr_class_num_side > 0:
+                gini_index -= (curr_class_num_side / side_num) ** 2
+        return gini_index
+
+    @classmethod
+    def _calculate_children_gini_index(cls, left_num, class_num_left, right_num, class_num_right):
+        left_split_gini_index = cls._calculate_gini_index(left_num, class_num_left)
+        right_split_gini_index = cls._calculate_gini_index(right_num, class_num_right)
+        children_gini_index = ((left_num * left_split_gini_index
+                                + right_num * right_split_gini_index)
+                               / (left_num + right_num))
+        return children_gini_index
+
+    @classmethod
+    def _two_class_trick(cls, class_index_num_samples, superclass_index_num_samples, values_seen,
+                         contingency_table, values_num_samples, superclass_contingency_table,
+                         num_total_valid_samples):
+        # TESTED!
+        def _get_non_empty_superclass_indices(superclass_index_num_samples):
+            # TESTED!
+            first_non_empty_superclass = None
+            second_non_empty_superclass = None
+            for superclass_index, superclass_num_samples in enumerate(superclass_index_num_samples):
+                if superclass_num_samples > 0:
+                    if first_non_empty_superclass is None:
+                        first_non_empty_superclass = superclass_index
+                    else:
+                        second_non_empty_superclass = superclass_index
+                        break
+            return first_non_empty_superclass, second_non_empty_superclass
+
+        def _calculate_value_class_ratio(values_seen, values_num_samples,
+                                         superclass_contingency_table, non_empty_class_indices):
+            # TESTED!
+            value_class_ratio = [] # [(value, ratio_on_second_class)]
+            second_class_index = non_empty_class_indices[1]
+            for curr_value in values_seen:
+                number_second_non_empty = superclass_contingency_table[
+                    curr_value][second_class_index]
+                value_class_ratio.append(
+                    (curr_value, number_second_non_empty / values_num_samples[curr_value]))
+            value_class_ratio.sort(key=lambda tup: tup[1])
+            return value_class_ratio
+
+
+        # We only need to sort values by the percentage of samples in second non-empty class with
+        # this value. The best split will be given by choosing an index to split this list of
+        # values in two.
+        (first_non_empty_superclass,
+         second_non_empty_superclass) = _get_non_empty_superclass_indices(
+             superclass_index_num_samples)
+        if first_non_empty_superclass is None or second_non_empty_superclass is None:
+            return (float('+inf'), {0}, set())
+
+        value_class_ratio = _calculate_value_class_ratio(values_seen,
+                                                         values_num_samples,
+                                                         superclass_contingency_table,
+                                                         (first_non_empty_superclass,
+                                                          second_non_empty_superclass))
+
+        best_split_children_gini_gain = float('+inf')
+        best_last_left_index = 0
+
+        num_right_samples = num_total_valid_samples
+        class_num_right = np.copy(class_index_num_samples)
+        num_left_samples = 0
+        class_num_left = np.zeros(class_num_right.shape, dtype=int)
+
+        for last_left_index, (last_left_value, _) in enumerate(value_class_ratio[:-1]):
+            num_samples_last_left_value = values_num_samples[last_left_value]
+            # num_samples_last_left_value > 0 always, since the values without samples were not
+            # added to the values_seen when created by cls._generate_value_to_index
+
+            num_left_samples += num_samples_last_left_value
+            num_right_samples -= num_samples_last_left_value
+            class_num_left += contingency_table[last_left_value]
+            class_num_right -= contingency_table[last_left_value]
+
+            curr_children_gini_index = cls._calculate_children_gini_index(num_left_samples,
+                                                                          class_num_left,
+                                                                          num_right_samples,
+                                                                          class_num_right)
+            if curr_children_gini_index < best_split_children_gini_gain:
+                best_split_children_gini_gain = curr_children_gini_index
+                best_last_left_index = last_left_index
+
+        # Let's get the values and split the indices corresponding to the best split found.
+        set_left_values = set(tup[0] for tup in value_class_ratio[:best_last_left_index + 1])
+        set_right_values = set(values_seen) - set_left_values
+
+        return (best_split_children_gini_gain, set_left_values, set_right_values)
+
+
+
+#################################################################################################
+#################################################################################################
+###                                                                                           ###
+###                       CONDITIONAL INFERENCE TREE LARGEST CLASS ALONE                      ###
+###                                                                                           ###
+#################################################################################################
+#################################################################################################
+
+
+class ConditionalInferenceTreeLargestClassAlone(Criterion):
+    """
+    Conditional Inference Tree using Largest Class Alone criterion to find best split. For
+    reference, see "Unbiased Recursive Partitioning: A Conditional Inference Framework, T. Hothorn,
+    K. Hornik & A. Zeileis. Journal of Computational and Graphical Statistics Vol. 15 , Iss. 3,
+    2006".
+    """
+    name = 'Conditional Inference Tree Largest Class Alone'
+
+    @classmethod
+    def select_best_attribute_and_split(cls, tree_node):
+        """Returns the best attribute and its best split, using the Conditional Inference Tree
+        Framework to choose the best attribute and using the Hypercube Cover criterion to find the
+        best split for it.
+
+        Args:
+          tree_node (TreeNode): tree node where we want to find the best attribute/split.
+
+        Returns the best split found.
+        """
+        best_splits_per_attrib = []
+        use_chi2 = False
+        for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+            if is_valid_attrib and cls._is_big_contingency_table(
+                    tree_node.contingency_tables[attrib_index].values_num_samples,
+                    tree_node.class_index_num_samples):
+                use_chi2 = True
+                break
+        if use_chi2: # Use Chi²-test
+            for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+                if is_valid_attrib:
+                    curr_chi2_cdf = cls._calculate_c_quad_cdf(
+                        tree_node.contingency_tables[attrib_index].contingency_table,
+                        tree_node.contingency_tables[attrib_index].values_num_samples,
+                        tree_node.class_index_num_samples,
+                        len(tree_node.valid_samples_indices))
+                    # Split will be calculated later
+                    best_splits_per_attrib.append(Split(attrib_index=attrib_index,
+                                                        splits_values=[],
+                                                        criterion_value=curr_chi2_cdf))
+        else: # Use Conditional Inference Trees' test
+            for attrib_index, is_valid_attrib in enumerate(tree_node.valid_nominal_attribute):
+                if is_valid_attrib:
+                    curr_c_quad_cdf = cls._calculate_c_quad_cdf(
+                        tree_node.contingency_tables[attrib_index].contingency_table,
+                        tree_node.contingency_tables[attrib_index].values_num_samples,
+                        tree_node.class_index_num_samples,
+                        len(tree_node.valid_samples_indices))
+                    # Split will be calculated later
+                    best_splits_per_attrib.append(Split(attrib_index=attrib_index,
+                                                        splits_values=[],
+                                                        criterion_value=curr_c_quad_cdf))
+        if best_splits_per_attrib:
+            best_split = max(best_splits_per_attrib, key=lambda split: split.criterion_value)
+            values_seen = cls._get_values_seen(
+                tree_node.contingency_tables[best_split.attrib_index].values_num_samples)
+            largest_class_index, _ = max(
+                enumerate(tree_node.class_index_num_samples), key=lambda x: x[1])
+            (superclass_contingency_table,
+             superclass_index_num_samples) = cls._get_superclass_contingency_table(
+                 tree_node.contingency_tables[best_split.attrib_index].contingency_table,
+                 tree_node.contingency_tables[best_split.attrib_index].values_num_samples,
+                 tree_node.class_index_num_samples,
+                 largest_class_index)
+            (_,
+             left_values,
+             right_values) = cls._two_class_trick(
+                 tree_node.class_index_num_samples,
+                 superclass_index_num_samples,
+                 values_seen,
+                 tree_node.contingency_tables[best_split.attrib_index].contingency_table,
+                 tree_node.contingency_tables[best_split.attrib_index].values_num_samples,
+                 superclass_contingency_table,
+                 len(tree_node.valid_samples_indices))
+            return Split(attrib_index=best_split.attrib_index,
+                         splits_values=[left_values, right_values],
+                         criterion_value=best_split.criterion_value)
+        return Split()
+
+    @classmethod
+    def _is_big_contingency_table(cls, values_num_samples, class_index_num_samples):
+        num_values_seen = sum(value_num_samples > 0 for value_num_samples in values_num_samples)
+        num_classes_seen = sum(class_num_samples > 0
+                               for class_num_samples in class_index_num_samples)
+        return num_values_seen * num_classes_seen > BIG_CONTINGENCY_TABLE_THRESHOLD
+
+    @classmethod
+    def _get_chi_square_test_p_value(cls, contingency_table, values_num_samples,
+                                     class_index_num_samples):
+        classes_seen = set(class_index for class_index, class_num_samples
+                           in enumerate(class_index_num_samples) if class_num_samples > 0)
+        num_classes = len(classes_seen)
+        if num_classes == 1:
+            return 0.0
+
+        num_values = sum(num_samples > 0 for num_samples in values_num_samples)
+        num_samples = sum(num_samples for num_samples in values_num_samples)
+        curr_chi_square_value = 0.0
+        for value, value_num_sample in enumerate(values_num_samples):
+            if value_num_sample == 0:
+                continue
+            for class_index in classes_seen:
+                expected_value_class = (
+                    values_num_samples[value] * class_index_num_samples[class_index] / num_samples)
+                diff = contingency_table[value][class_index] - expected_value_class
+                curr_chi_square_value += diff * (diff / expected_value_class)
+        return 1. - scipy.stats.chi2.cdf(x=curr_chi_square_value,
+                                         df=((num_classes - 1) * (num_values - 1)))
+
+    @classmethod
+    def _calculate_c_quad_cdf(cls, contingency_table, values_num_samples, class_index_num_samples,
+                              num_valid_samples):
+        def _calculate_expected_value_h(class_index_num_samples, num_valid_samples):
+            return (1./num_valid_samples) * np.array(class_index_num_samples)
+
+        def _calculate_covariance_h(expected_value_h, class_index_num_samples, num_valid_samples):
+            num_classes = len(class_index_num_samples)
+            covariance_h = np.zeros((num_classes, num_classes))
+            for class_index, class_num_samples in enumerate(class_index_num_samples):
+                if class_num_samples:
+                    curr_class_one_hot_encoding = np.zeros((num_classes))
+                    curr_class_one_hot_encoding[class_index] = 1.
+                    diff = curr_class_one_hot_encoding - expected_value_h
+                    covariance_h += class_num_samples * np.outer(diff, diff)
+            return covariance_h / num_valid_samples
+
+        def _calculate_mu_j(values_num_samples, expected_value_h):
+            return np.outer(values_num_samples, expected_value_h).flatten(order='F')
+
+        def _calculate_sigma_j(values_num_samples, num_valid_samples, covariance_h):
+            values_num_samples_correct_dim = values_num_samples.reshape(
+                (values_num_samples.shape[0], 1))
+            return (((num_valid_samples / (num_valid_samples - 1))
+                     * np.kron(covariance_h, np.diag(values_num_samples)))
+                    - ((1 / (num_valid_samples - 1))
+                       * np.kron(covariance_h,
+                                 np.kron(values_num_samples_correct_dim,
+                                         values_num_samples_correct_dim.transpose()))))
+
+
+        expected_value_h = _calculate_expected_value_h(class_index_num_samples, num_valid_samples)
+        covariance_h = _calculate_covariance_h(expected_value_h,
+                                               class_index_num_samples,
+                                               num_valid_samples)
+        mu_j = _calculate_mu_j(values_num_samples, expected_value_h)
+        sigma_j = _calculate_sigma_j(values_num_samples, num_valid_samples, covariance_h)
+
+        temp_diff = contingency_table.flatten(order='F') - mu_j
+
+        curr_rcond = 1e-15
+        while True:
+            try:
+                sigma_j_pinv = np.linalg.pinv(sigma_j)
+                sigma_j_rank = np.linalg.matrix_rank(sigma_j)
+                break
+            except np.linalg.linalg.LinAlgError:
+                # Happens when sigma_j is (very) badly conditioned
+                pass
+            try:
+                (sigma_j_pinv, sigma_j_rank) = scipy.linalg.pinv(sigma_j, return_rank=True)
+                break
+            except:
+                # Happens when sigma_j is (very) badly conditioned
+                curr_rcond *= 10.
+                if curr_rcond > 1e-6:
+                    # We give up on this attribute
+                    print('Warning: attribute has sigma_j matrix that is not decomposable in SVD.')
+                    return float('-inf')
+
+        c_quad = np.dot(temp_diff, np.dot(sigma_j_pinv, temp_diff.transpose()))
+        return scipy.stats.chi2.cdf(x=c_quad, df=sigma_j_rank)
+
+    @staticmethod
+    def _get_values_seen(values_num_samples):
+        values_seen = set()
+        for value, num_samples in enumerate(values_num_samples):
+            if num_samples > 0:
+                values_seen.add(value)
+        return values_seen
+
+    @staticmethod
+    def _get_superclass_contingency_table(contingency_table, values_num_samples,
+                                          class_index_num_samples, largest_classes_index):
+        superclass_contingency_table = np.array(
+            [contingency_table[:, largest_classes_index],
+             values_num_samples - contingency_table[:, largest_classes_index]
+            ]).T
+        superclass_index_num_samples = [
+            class_index_num_samples[largest_classes_index],
+            sum(class_index_num_samples) - class_index_num_samples[largest_classes_index]]
         return superclass_contingency_table, superclass_index_num_samples
 
     @staticmethod

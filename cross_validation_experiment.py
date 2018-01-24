@@ -12,11 +12,12 @@ import random
 import sys
 import timeit
 
+import numpy as np
+
 import criteria
 import dataset
 import decision_tree
 
-import numpy as np
 
 
 #: Initial seeds used in `random` and `numpy.random` modules, in order of `trial_number`.
@@ -216,6 +217,10 @@ def get_criteria(criteria_names_list):
             criteria_list.append(criteria.HypercubeCover())
         elif criterion_name == "Conditional Inference Tree Hypercube Cover":
             criteria_list.append(criteria.ConditionalInferenceTreeHypercubeCover())
+        elif criterion_name == "Largest Class Alone":
+            criteria_list.append(criteria.LargestClassAlone())
+        elif criterion_name == "Conditional Inference Tree Largest Class Alone":
+            criteria_list.append(criteria.ConditionalInferenceTreeLargestClassAlone())
         else:
             print('Unkown criterion name:', criterion_name)
             print('Exiting.')
