@@ -102,10 +102,30 @@ class Twoing(Criterion):
                         best_total_gini_gain = curr_gini_gain
                         best_left_values = left_values
                         best_right_values = right_values
+
+                num_values, num_classes = tree_node.contingency_tables[
+                    attrib_index].contingency_table.shape
+                class_num_left = np.zeros((num_classes), dtype=int)
+                class_num_right = np.zeros((num_classes), dtype=int)
+                num_left_samples = 0
+                num_right_samples = 0
+                for value in range(num_values):
+                    if value in best_left_values:
+                        class_num_left += tree_node.contingency_tables[
+                            attrib_index].contingency_table[value, :]
+                        num_left_samples += tree_node.contingency_tables[
+                            attrib_index].values_num_samples[value]
+                    else:
+                        class_num_right += tree_node.contingency_tables[
+                            attrib_index].contingency_table[value, :]
+                        num_right_samples += tree_node.contingency_tables[
+                            attrib_index].values_num_samples[value]
+                twoing_value = cls._get_twoing_value(
+                    class_num_left, class_num_right, num_left_samples, num_right_samples)
                 best_splits_per_attrib.append(
                     Split(attrib_index=attrib_index,
                           splits_values=[best_left_values, best_right_values],
-                          criterion_value=best_total_gini_gain))
+                          criterion_value=twoing_value))
             elif is_valid_numeric_attrib:
                 values_and_classes = cls._get_numeric_values_seen(tree_node.valid_samples_indices,
                                                                   tree_node.dataset.samples,
@@ -221,7 +241,7 @@ class Twoing(Criterion):
                           num_right_samples):
         sum_dif = 0.0
         for left_num, right_num in zip(class_num_left, class_num_right):
-            class_num_tot = class_num_left + class_num_right
+            class_num_tot = left_num + right_num
             if class_num_tot == 0:
                 continue
             sum_dif += abs(left_num / num_left_samples - right_num / num_right_samples)
