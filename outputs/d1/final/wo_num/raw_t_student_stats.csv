@@ -1,161 +1,241 @@
 Dataset,Attribute,Criterion Difference Name,Paired t-statistics on Accuracy with Missing Values,Degrees of Freedom of Accuracy with Missing Values,P-value t-statistics on Accuracy with Missing Values,Paired t-statistics on Accuracy without Missing Values,Degrees of Freedom of Accuracy without Missing Values,P-value t-statistics on Accuracy without Missing Values,Paired t-statistics on Number of Nodes,Degrees of Freedom of Number of Nodes,P-value t-statistics on Number of Nodes
-Nursery,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,PC-ext - LS Chi Square,30.565263940108995,19,0.0,30.565263940108995,19,0.0,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,PC-ext - Twoing,26.739236828044746,19,1.11022302463e-16,26.739236828044746,19,1.11022302463e-16,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,PC-ext - Hypercube Cover,1.0,19,0.164938400461,1.0,19,0.164938400461,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,PC-ext - LS Squared Gini,65.00750811809044,19,0.0,65.00750811809044,19,0.0,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,LS Chi Square - Twoing,3.955162414859415,19,0.000424413578228,3.955162414859415,19,0.000424413578228,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,LS Chi Square - Hypercube Cover,-30.029708933015076,19,1.0,-30.029708933015076,19,1.0,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,LS Chi Square - LS Squared Gini,8.041206656586906,19,7.76345994158e-08,8.041206656586906,19,7.76345994158e-08,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,Twoing - Hypercube Cover,-27.829886325653604,19,1.0,-27.829886325653604,19,1.0,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,Twoing - LS Squared Gini,-0.0722596137975623,19,0.528424725276,-0.0722596137975623,19,0.528424725276,0.0,19,0.5
-Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - LS Squared Gini,64.37406870961824,19,0.0,64.37406870961824,19,0.0,0.0,19,0.5
+KDD98 Multiclass 2,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Hypercube Cover - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
+KDD98 Multiclass 2,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Largest Class Alone - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
+KDD98 Multiclass 2,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 2,None,PC-ext - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
 KDD98 Multiclass 2,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 KDD98 Multiclass 2,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 2,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 2,None,PC-ext - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
+KDD98 Multiclass 2,None,LS Squared Gini - LS Chi Square,-20.44131574919473,19,1.0,-20.44131574919473,19,1.0,0.0,19,0.5
+KDD98 Multiclass 2,None,LS Squared Gini - Twoing,-20.44131574919473,19,1.0,-20.44131574919473,19,1.0,0.0,19,0.5
 KDD98 Multiclass 2,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 2,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 2,None,LS Chi Square - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
-KDD98 Multiclass 2,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 2,None,Twoing - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
-KDD98 Multiclass 2,None,Hypercube Cover - LS Squared Gini,20.44131574919473,19,1.07691633389e-14,20.44131574919473,19,1.07691633389e-14,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,PC-ext - LS Chi Square,304.9891536544767,19,0.0,304.98915365447453,19,0.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,PC-ext - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,LS Chi Square - Twoing,-304.9891536544767,19,1.0,-304.98915365447453,19,1.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,LS Chi Square - Hypercube Cover,-304.9891536544767,19,1.0,-304.98915365447453,19,1.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,LS Chi Square - LS Squared Gini,177.96698105350802,19,0.0,188.65420294616428,19,0.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,Twoing - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
-Shelter Animal Outcomes 15 classes,None,Hypercube Cover - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
-Cars,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Hypercube Cover - Largest Class Alone,-3030.193271385537,19,1.0,-3029.8369004889964,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Hypercube Cover - PC-ext,-inf,19,1.0,-3873394.333897889,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Hypercube Cover - LS Squared Gini,-inf,19,1.0,-3873394.333679894,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Hypercube Cover - LS Chi Square,-inf,19,1.0,-29438.822698658954,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type with Aggreg,None,Largest Class Alone - PC-ext,-2372.1258863825974,19,1.0,-2372.343957877348,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Largest Class Alone - LS Squared Gini,-18.03390455281843,19,1.0,-18.033919085025836,19,1.0,0.0,19,0.5
+Cover Type with Aggreg,None,Largest Class Alone - LS Chi Square,2732.332844954326,19,0.0,2727.720868098296,19,0.0,0.0,19,0.5
+Cover Type with Aggreg,None,Largest Class Alone - Twoing,3030.193271385537,19,0.0,3029.8369004889964,19,0.0,0.0,19,0.5
+Cover Type with Aggreg,None,PC-ext - LS Squared Gini,inf,19,0.0,3873394.3341801637,19,0.0,0.0,19,0.5
 Cover Type with Aggreg,None,PC-ext - LS Chi Square,inf,19,0.0,443391.6712138751,19,0.0,0.0,19,0.5
 Cover Type with Aggreg,None,PC-ext - Twoing,inf,19,0.0,3873394.333897889,19,0.0,0.0,19,0.5
-Cover Type with Aggreg,None,PC-ext - Hypercube Cover,inf,19,0.0,3873394.333897889,19,0.0,0.0,19,0.5
-Cover Type with Aggreg,None,PC-ext - LS Squared Gini,inf,19,0.0,3873394.3341801637,19,0.0,0.0,19,0.5
+Cover Type with Aggreg,None,LS Squared Gini - LS Chi Square,inf,19,0.0,252222.5194445417,19,0.0,0.0,19,0.5
+Cover Type with Aggreg,None,LS Squared Gini - Twoing,inf,19,0.0,3873394.333679894,19,0.0,0.0,19,0.5
 Cover Type with Aggreg,None,LS Chi Square - Twoing,inf,19,0.0,29438.822698658954,19,0.0,0.0,19,0.5
-Cover Type with Aggreg,None,LS Chi Square - Hypercube Cover,inf,19,0.0,29438.822698658954,19,0.0,0.0,19,0.5
-Cover Type with Aggreg,None,LS Chi Square - LS Squared Gini,-inf,19,1.0,-252222.5194445417,19,1.0,0.0,19,0.5
-Cover Type with Aggreg,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type with Aggreg,None,Twoing - LS Squared Gini,-inf,19,1.0,-3873394.333679894,19,1.0,0.0,19,0.5
-Cover Type with Aggreg,None,Hypercube Cover - LS Squared Gini,-inf,19,1.0,-3873394.333679894,19,1.0,0.0,19,0.5
-Cover Type,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,PC-ext - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
-Cover Type,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,LS Chi Square - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
-Cover Type,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cover Type,None,Twoing - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
-Cover Type,None,Hypercube Cover - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
-Poker Hand,None,PC-ext - LS Chi Square,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
-Poker Hand,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Poker Hand,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Poker Hand,None,PC-ext - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
-Poker Hand,None,LS Chi Square - Twoing,1.0,19,0.164938400461,1.0,19,0.164938400461,-1.0,19,0.835061599539
-Poker Hand,None,LS Chi Square - Hypercube Cover,1.0,19,0.164938400461,1.0,19,0.164938400461,-1.0,19,0.835061599539
-Poker Hand,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Poker Hand,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Poker Hand,None,Twoing - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
-Poker Hand,None,Hypercube Cover - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
-Contraceptive with Aggreg,None,PC-ext - LS Chi Square,8.249345140252423,19,5.2960895669e-08,8.349144168819235,19,4.41756949909e-08,8.903699347462787,19,1.65026260435e-08
-Contraceptive with Aggreg,None,PC-ext - Twoing,4.438038039058746,19,0.000141114097637,4.438478393526236,19,0.000140972962138,2.1794494717703365,19,0.0210431433553
-Contraceptive with Aggreg,None,PC-ext - Hypercube Cover,2.538502571552075,19,0.0100207948946,2.546782720548532,19,0.00984647990885,1.0,19,0.164938400461
-Contraceptive with Aggreg,None,PC-ext - LS Squared Gini,-2.766585773528439,19,0.99385759789,-2.775882520075947,19,0.993980414139,1.8311038136792213,19,0.0414069212923
-Contraceptive with Aggreg,None,LS Chi Square - Twoing,-2.0526574670716706,19,0.972930356859,-2.1699694669546186,19,0.978552572214,-5.107322758826758,19,0.999968704081
-Contraceptive with Aggreg,None,LS Chi Square - Hypercube Cover,-8.059054692275733,19,0.999999924887,-8.144752137314708,19,0.999999935862,-6.841787475963466,19,0.999999212729
-Contraceptive with Aggreg,None,LS Chi Square - LS Squared Gini,-12.313481184890236,19,0.999999999916,-12.522271670755188,19,0.999999999937,-6.190188668731139,19,0.999996994828
-Contraceptive with Aggreg,None,Twoing - Hypercube Cover,-4.0578948131521475,19,0.999664356874,-4.052853721860448,19,0.999660470169,-1.8311038136792213,19,0.958593078708
-Contraceptive with Aggreg,None,Twoing - LS Squared Gini,-7.928872091919277,19,0.99999990434,-7.928130625847184,19,0.999999904208,-0.4380858271151806,19,0.666867931151
-Contraceptive with Aggreg,None,Hypercube Cover - LS Squared Gini,-4.251572834770057,19,0.999784268009,-4.265797697316524,19,0.999791151418,1.0,19,0.164938400461
+Cars with Aggreg,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Cars with Aggreg,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Cars with Aggreg,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars with Aggreg,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Cars with Aggreg,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Cars with Aggreg,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Nursery with Aggreg,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Nursery with Aggreg,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery with Aggreg,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
 Nursery with Aggreg,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Nursery with Aggreg,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 9,None,PC-ext - LS Chi Square,3.550930997334726,19,0.00106685950866,3.550930997334726,19,0.00106685950866,0.0,19,0.5
-KDD98 Multiclass 9,None,PC-ext - Twoing,2.8918854787348156,19,0.00467187962751,2.8918854787348156,19,0.00467187962751,0.0,19,0.5
-KDD98 Multiclass 9,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-KDD98 Multiclass 9,None,PC-ext - LS Squared Gini,-11.910779431534621,19,0.999999999853,-11.910779431534621,19,0.999999999853,0.0,19,0.5
-KDD98 Multiclass 9,None,LS Chi Square - Twoing,-1.606931107245691,19,0.937719479998,-1.606931107245691,19,0.937719479998,0.0,19,0.5
-KDD98 Multiclass 9,None,LS Chi Square - Hypercube Cover,-3.550930997334726,19,0.998933140491,-3.550930997334726,19,0.998933140491,0.0,19,0.5
-KDD98 Multiclass 9,None,LS Chi Square - LS Squared Gini,-14.686738983068242,19,0.999999999996,-14.686738983068242,19,0.999999999996,0.0,19,0.5
-KDD98 Multiclass 9,None,Twoing - Hypercube Cover,-2.8918854787348156,19,0.995328120372,-2.8918854787348156,19,0.995328120372,0.0,19,0.5
-KDD98 Multiclass 9,None,Twoing - LS Squared Gini,-13.5944491385578,19,0.999999999985,-13.5944491385578,19,0.999999999985,0.0,19,0.5
-KDD98 Multiclass 9,None,Hypercube Cover - LS Squared Gini,-11.910779431534621,19,0.999999999853,-11.910779431534621,19,0.999999999853,0.0,19,0.5
-Adult Census Income,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Adult Census Income,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Contraceptive,None,PC-ext - LS Chi Square,6.8383339438330415,19,7.92761387758e-07,6.8383339438330415,19,7.92761387758e-07,5.604298641714213,19,1.04994390413e-05
-Contraceptive,None,PC-ext - Twoing,1.399599018222921,19,0.0888745478383,1.399599018222921,19,0.0888745478383,-0.5674803065350239,19,0.711483799137
-Contraceptive,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Contraceptive,None,PC-ext - LS Squared Gini,6.065930515462678,19,3.90433431596e-06,6.065930515462678,19,3.90433431596e-06,18.419709940214663,19,7.07212066686e-14
-Contraceptive,None,LS Chi Square - Twoing,-7.9429039224927624,19,0.999999906811,-7.9429039224927624,19,0.999999906811,-7.02462267608568,19,0.99999945384
-Contraceptive,None,LS Chi Square - Hypercube Cover,-6.8383339438330415,19,0.999999207239,-6.8383339438330415,19,0.999999207239,-5.604298641714213,19,0.999989500561
-Contraceptive,None,LS Chi Square - LS Squared Gini,-0.5146768585185739,19,0.69364289872,-0.5146768585185739,19,0.69364289872,9.49073622400147,19,6.06623140609e-09
-Contraceptive,None,Twoing - Hypercube Cover,-1.399599018222921,19,0.911125452162,-1.399599018222921,19,0.911125452162,0.5674803065350239,19,0.288516200863
-Contraceptive,None,Twoing - LS Squared Gini,5.883298792009402,19,5.75657643753e-06,5.883298792009402,19,5.75657643753e-06,18.855566130364174,19,4.64073224293e-14
-Contraceptive,None,Hypercube Cover - LS Squared Gini,6.065930515462678,19,3.90433431596e-06,6.065930515462678,19,3.90433431596e-06,18.419709940214663,19,7.07212066686e-14
-Mushroom,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,LS Chi Square - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,LS Chi Square - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,Twoing - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,Twoing - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-Mushroom,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+San Francisco Crime 15 classes,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+San Francisco Crime 15 classes,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+San Francisco Crime 15 classes,None,Hypercube Cover - LS Squared Gini,20.18555488427228,19,1.3433698598e-14,20.18555488427228,19,1.3433698598e-14,0.0,19,0.5
+San Francisco Crime 15 classes,None,Hypercube Cover - LS Chi Square,91.44011529467645,19,0.0,91.44011529467645,19,0.0,1.0,19,0.164938400461
+San Francisco Crime 15 classes,None,Hypercube Cover - Twoing,-1.452947407024725,19,0.918722404735,-1.452947407024725,19,0.918722404735,0.0,19,0.5
+San Francisco Crime 15 classes,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+San Francisco Crime 15 classes,None,Largest Class Alone - LS Squared Gini,20.18555488427228,19,1.3433698598e-14,20.18555488427228,19,1.3433698598e-14,0.0,19,0.5
+San Francisco Crime 15 classes,None,Largest Class Alone - LS Chi Square,91.44011529467645,19,0.0,91.44011529467645,19,0.0,1.0,19,0.164938400461
+San Francisco Crime 15 classes,None,Largest Class Alone - Twoing,-1.452947407024725,19,0.918722404735,-1.452947407024725,19,0.918722404735,0.0,19,0.5
+San Francisco Crime 15 classes,None,PC-ext - LS Squared Gini,20.18555488427228,19,1.3433698598e-14,20.18555488427228,19,1.3433698598e-14,0.0,19,0.5
 San Francisco Crime 15 classes,None,PC-ext - LS Chi Square,91.44011529467645,19,0.0,91.44011529467645,19,0.0,1.0,19,0.164938400461
 San Francisco Crime 15 classes,None,PC-ext - Twoing,-1.452947407024725,19,0.918722404735,-1.452947407024725,19,0.918722404735,0.0,19,0.5
-San Francisco Crime 15 classes,None,PC-ext - Hypercube Cover,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
-San Francisco Crime 15 classes,None,PC-ext - LS Squared Gini,20.18555488427228,19,1.3433698598e-14,20.18555488427228,19,1.3433698598e-14,0.0,19,0.5
+San Francisco Crime 15 classes,None,LS Squared Gini - LS Chi Square,393.32682060392017,19,0.0,393.32682060392017,19,0.0,1.0,19,0.164938400461
+San Francisco Crime 15 classes,None,LS Squared Gini - Twoing,-inf,19,1.0,-inf,19,1.0,0.0,19,0.5
 San Francisco Crime 15 classes,None,LS Chi Square - Twoing,-508.10479573713803,19,1.0,-508.10479573713803,19,1.0,-1.0,19,0.835061599539
-San Francisco Crime 15 classes,None,LS Chi Square - Hypercube Cover,-91.44011529467645,19,1.0,-91.44011529467645,19,1.0,-1.0,19,0.835061599539
-San Francisco Crime 15 classes,None,LS Chi Square - LS Squared Gini,-393.32682060392017,19,1.0,-393.32682060392017,19,1.0,-1.0,19,0.835061599539
-San Francisco Crime 15 classes,None,Twoing - Hypercube Cover,1.452947407024725,19,0.081277595265,1.452947407024725,19,0.081277595265,0.0,19,0.5
-San Francisco Crime 15 classes,None,Twoing - LS Squared Gini,inf,19,0.0,inf,19,0.0,0.0,19,0.5
-San Francisco Crime 15 classes,None,Hypercube Cover - LS Squared Gini,20.18555488427228,19,1.3433698598e-14,20.18555488427228,19,1.3433698598e-14,0.0,19,0.5
+Nursery,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Nursery,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 9,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 9,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 9,None,Hypercube Cover - LS Squared Gini,-11.910779431534621,19,0.999999999853,-11.910779431534621,19,0.999999999853,0.0,19,0.5
+KDD98 Multiclass 9,None,Hypercube Cover - LS Chi Square,3.550930997334726,19,0.00106685950866,3.550930997334726,19,0.00106685950866,0.0,19,0.5
+KDD98 Multiclass 9,None,Hypercube Cover - Twoing,2.8918854787348156,19,0.00467187962751,2.8918854787348156,19,0.00467187962751,0.0,19,0.5
+KDD98 Multiclass 9,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+KDD98 Multiclass 9,None,Largest Class Alone - LS Squared Gini,-11.910779431534621,19,0.999999999853,-11.910779431534621,19,0.999999999853,0.0,19,0.5
+KDD98 Multiclass 9,None,Largest Class Alone - LS Chi Square,3.550930997334726,19,0.00106685950866,3.550930997334726,19,0.00106685950866,0.0,19,0.5
+KDD98 Multiclass 9,None,Largest Class Alone - Twoing,2.8918854787348156,19,0.00467187962751,2.8918854787348156,19,0.00467187962751,0.0,19,0.5
+KDD98 Multiclass 9,None,PC-ext - LS Squared Gini,-11.910779431534621,19,0.999999999853,-11.910779431534621,19,0.999999999853,0.0,19,0.5
+KDD98 Multiclass 9,None,PC-ext - LS Chi Square,3.550930997334726,19,0.00106685950866,3.550930997334726,19,0.00106685950866,0.0,19,0.5
+KDD98 Multiclass 9,None,PC-ext - Twoing,2.8918854787348156,19,0.00467187962751,2.8918854787348156,19,0.00467187962751,0.0,19,0.5
+KDD98 Multiclass 9,None,LS Squared Gini - LS Chi Square,14.686738983068242,19,3.98681088143e-12,14.686738983068242,19,3.98681088143e-12,0.0,19,0.5
+KDD98 Multiclass 9,None,LS Squared Gini - Twoing,13.5944491385578,19,1.53287382787e-11,13.5944491385578,19,1.53287382787e-11,0.0,19,0.5
+KDD98 Multiclass 9,None,LS Chi Square - Twoing,-1.606931107245691,19,0.937719479998,-1.606931107245691,19,0.937719479998,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - Largest Class Alone,3.2982484499139195,19,0.0018901182628,3.2982484499139195,19,0.0018901182628,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - PC-ext,-1.0,19,0.835061599539,-1.0,19,0.835061599539,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - LS Squared Gini,64.37406870961824,19,0.0,64.37406870961824,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - LS Chi Square,30.029708933015076,19,0.0,30.029708933015076,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Hypercube Cover - Twoing,27.829886325653604,19,0.0,27.829886325653604,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Largest Class Alone - PC-ext,-3.913642412339141,19,0.999533364317,-3.913642412339141,19,0.999533364317,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Largest Class Alone - LS Squared Gini,58.93172171311275,19,0.0,58.93172171311275,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Largest Class Alone - LS Chi Square,27.785390599976214,19,0.0,27.785390599976214,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,Largest Class Alone - Twoing,26.250555154004353,19,1.11022302463e-16,26.250555154004353,19,1.11022302463e-16,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,PC-ext - LS Squared Gini,65.00750811809044,19,0.0,65.00750811809044,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,PC-ext - LS Chi Square,30.565263940108995,19,0.0,30.565263940108995,19,0.0,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,PC-ext - Twoing,26.739236828044746,19,1.11022302463e-16,26.739236828044746,19,1.11022302463e-16,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,LS Squared Gini - LS Chi Square,-8.041206656586906,19,0.999999922365,-8.041206656586906,19,0.999999922365,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,LS Squared Gini - Twoing,0.0722596137975623,19,0.471575274724,0.0722596137975623,19,0.471575274724,0.0,19,0.5
+Reuters Phonemes 10000 samples 15 classes,None,LS Chi Square - Twoing,3.955162414859415,19,0.000424413578228,3.955162414859415,19,0.000424413578228,0.0,19,0.5
+Cover Type,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Hypercube Cover - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
+Cover Type,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Largest Class Alone - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
+Cover Type,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,PC-ext - LS Squared Gini,inf,19,0.0,inf,19,0.0,inf,19,0.0
+Cover Type,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cover Type,None,LS Squared Gini - LS Chi Square,-inf,19,1.0,-inf,19,1.0,-inf,19,1.0
+Cover Type,None,LS Squared Gini - Twoing,-inf,19,1.0,-inf,19,1.0,-inf,19,1.0
+Cover Type,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Contraceptive with Aggreg,None,Hypercube Cover - Largest Class Alone,-3.181146964560574,19,0.997541203839,-3.1811242348692845,19,0.997541078678,0.0,19,0.5
+Contraceptive with Aggreg,None,Hypercube Cover - PC-ext,-2.538502571552075,19,0.989979205105,-2.546782720548532,19,0.990153520091,-1.0,19,0.835061599539
+Contraceptive with Aggreg,None,Hypercube Cover - LS Squared Gini,-4.251572834770057,19,0.999784268009,-4.265797697316524,19,0.999791151418,1.0,19,0.164938400461
+Contraceptive with Aggreg,None,Hypercube Cover - LS Chi Square,8.059054692275733,19,7.51130471155e-08,8.144752137314708,19,6.41379882538e-08,6.841787475963466,19,7.87270588831e-07
+Contraceptive with Aggreg,None,Hypercube Cover - Twoing,4.0578948131521475,19,0.000335643126363,4.052853721860448,19,0.000339529830811,1.8311038136792213,19,0.0414069212923
+Contraceptive with Aggreg,None,Largest Class Alone - PC-ext,-1.7718545492254882,19,0.953771875461,-1.7814899382074196,19,0.954587673438,-1.0,19,0.835061599539
+Contraceptive with Aggreg,None,Largest Class Alone - LS Squared Gini,-3.823993559595227,19,0.999427352303,-3.838626624713269,19,0.999446167363,1.0,19,0.164938400461
+Contraceptive with Aggreg,None,Largest Class Alone - LS Chi Square,8.849470262944877,19,1.81395829468e-08,8.947459703596959,19,1.52940917708e-08,6.841787475963466,19,7.87270588831e-07
+Contraceptive with Aggreg,None,Largest Class Alone - Twoing,4.61781528500997,19,9.38702315205e-05,4.614476049204152,19,9.45820736293e-05,1.8311038136792213,19,0.0414069212923
+Contraceptive with Aggreg,None,PC-ext - LS Squared Gini,-2.766585773528439,19,0.99385759789,-2.775882520075947,19,0.993980414139,1.8311038136792213,19,0.0414069212923
+Contraceptive with Aggreg,None,PC-ext - LS Chi Square,8.249345140252423,19,5.2960895669e-08,8.349144168819235,19,4.41756949909e-08,8.903699347462787,19,1.65026260435e-08
+Contraceptive with Aggreg,None,PC-ext - Twoing,4.438038039058746,19,0.000141114097637,4.438478393526236,19,0.000140972962138,2.1794494717703365,19,0.0210431433553
+Contraceptive with Aggreg,None,LS Squared Gini - LS Chi Square,12.313481184890236,19,8.37010460941e-11,12.522271670755188,19,6.28769258881e-11,6.190188668731139,19,3.00517246821e-06
+Contraceptive with Aggreg,None,LS Squared Gini - Twoing,7.928872091919277,19,9.5659709709e-08,7.928130625847184,19,9.57921585387e-08,0.4380858271151806,19,0.333132068849
+Contraceptive with Aggreg,None,LS Chi Square - Twoing,-2.0526574670716706,19,0.972930356859,-2.1699694669546186,19,0.978552572214,-5.107322758826758,19,0.999968704081
+Mushroom,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Mushroom,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Contraceptive,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Contraceptive,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Contraceptive,None,Hypercube Cover - LS Squared Gini,6.065930515462678,19,3.90433431596e-06,6.065930515462678,19,3.90433431596e-06,18.419709940214663,19,7.07212066686e-14
+Contraceptive,None,Hypercube Cover - LS Chi Square,6.8383339438330415,19,7.92761387758e-07,6.8383339438330415,19,7.92761387758e-07,5.604298641714213,19,1.04994390413e-05
+Contraceptive,None,Hypercube Cover - Twoing,1.399599018222921,19,0.0888745478383,1.399599018222921,19,0.0888745478383,-0.5674803065350239,19,0.711483799137
+Contraceptive,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Contraceptive,None,Largest Class Alone - LS Squared Gini,6.065930515462678,19,3.90433431596e-06,6.065930515462678,19,3.90433431596e-06,18.419709940214663,19,7.07212066686e-14
+Contraceptive,None,Largest Class Alone - LS Chi Square,6.8383339438330415,19,7.92761387758e-07,6.8383339438330415,19,7.92761387758e-07,5.604298641714213,19,1.04994390413e-05
+Contraceptive,None,Largest Class Alone - Twoing,1.399599018222921,19,0.0888745478383,1.399599018222921,19,0.0888745478383,-0.5674803065350239,19,0.711483799137
+Contraceptive,None,PC-ext - LS Squared Gini,6.065930515462678,19,3.90433431596e-06,6.065930515462678,19,3.90433431596e-06,18.419709940214663,19,7.07212066686e-14
+Contraceptive,None,PC-ext - LS Chi Square,6.8383339438330415,19,7.92761387758e-07,6.8383339438330415,19,7.92761387758e-07,5.604298641714213,19,1.04994390413e-05
+Contraceptive,None,PC-ext - Twoing,1.399599018222921,19,0.0888745478383,1.399599018222921,19,0.0888745478383,-0.5674803065350239,19,0.711483799137
+Contraceptive,None,LS Squared Gini - LS Chi Square,0.5146768585185739,19,0.30635710128,0.5146768585185739,19,0.30635710128,-9.49073622400147,19,0.999999993934
+Contraceptive,None,LS Squared Gini - Twoing,-5.883298792009402,19,0.999994243424,-5.883298792009402,19,0.999994243424,-18.855566130364174,19,1.0
+Contraceptive,None,LS Chi Square - Twoing,-7.9429039224927624,19,0.999999906811,-7.9429039224927624,19,0.999999906811,-7.02462267608568,19,0.99999945384
+Cars,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Cars,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Hypercube Cover - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Hypercube Cover - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Largest Class Alone - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Largest Class Alone - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,PC-ext - LS Squared Gini,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,PC-ext - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,LS Squared Gini - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Adult Census Income,None,LS Chi Square - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover - LS Chi Square,304.9891536544767,19,0.0,304.98915365447453,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Largest Class Alone - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Largest Class Alone - LS Chi Square,304.9891536544767,19,0.0,304.98915365447453,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,PC-ext - LS Squared Gini,670.2876806012315,19,0.0,685.6052173717527,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,PC-ext - LS Chi Square,304.9891536544767,19,0.0,304.98915365447453,19,0.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,LS Squared Gini - LS Chi Square,-177.96698105350802,19,1.0,-188.65420294616428,19,1.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,LS Squared Gini - Twoing,-670.2876806012315,19,1.0,-685.6052173717527,19,1.0,0.0,19,0.5
+Shelter Animal Outcomes 15 classes,None,LS Chi Square - Twoing,-304.9891536544767,19,1.0,-304.98915365447453,19,1.0,0.0,19,0.5
+Poker Hand,None,Hypercube Cover - Largest Class Alone,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,Hypercube Cover - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,Hypercube Cover - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,Hypercube Cover - LS Chi Square,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,Hypercube Cover - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,Largest Class Alone - PC-ext,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,Largest Class Alone - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,Largest Class Alone - LS Chi Square,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,Largest Class Alone - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,PC-ext - LS Squared Gini,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,PC-ext - LS Chi Square,-1.0,19,0.835061599539,-1.0,19,0.835061599539,1.0,19,0.164938400461
+Poker Hand,None,PC-ext - Twoing,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,LS Squared Gini - LS Chi Square,0.0,19,0.5,0.0,19,0.5,0.0,19,0.5
+Poker Hand,None,LS Squared Gini - Twoing,1.0,19,0.164938400461,1.0,19,0.164938400461,-1.0,19,0.835061599539
+Poker Hand,None,LS Chi Square - Twoing,1.0,19,0.164938400461,1.0,19,0.164938400461,-1.0,19,0.835061599539

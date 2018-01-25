@@ -1,46 +1,55 @@
 Dataset,Attribute,Criterion,Number of times is statistically better with missing values,Number of times is statistically better without missing values,Number of times has statistically larger number of nodes,Number of times is statistically worse with missing values,Number of times is statistically worse without missing values,Number of times has statistically smaller number of nodes
 Adult Census Income,None,Hypercube Cover,3,3,2,0,0,0
-Adult Census Income,None,LS Chi Square,1,1,1,2,2,3
-Adult Census Income,None,LS Squared Gini,0,0,0,4,4,4
+Adult Census Income,None,LS Chi Square,1,1,1,3,3,4
+Adult Census Income,None,LS Squared Gini,0,0,0,5,5,5
+Adult Census Income,None,Largest Class Alone,3,3,2,0,0,0
 Adult Census Income,None,PC-ext,3,3,2,0,0,0
-Adult Census Income,None,Twoing,1,1,2,2,2,0
+Adult Census Income,None,Twoing,1,1,2,3,3,0
 Contraceptive,None,Hypercube Cover,3,3,0,0,0,3
-Contraceptive,None,LS Chi Square,1,1,3,2,1,0
-Contraceptive,None,LS Squared Gini,0,0,3,4,3,0
-Contraceptive,None,PC-ext,3,0,0,0,0,3
-Contraceptive,None,Twoing,1,1,2,2,1,2
+Contraceptive,None,LS Chi Square,1,1,4,3,2,0
+Contraceptive,None,LS Squared Gini,0,0,4,5,4,0
+Contraceptive,None,Largest Class Alone,3,3,0,1,0,3
+Contraceptive,None,PC-ext,4,0,0,0,0,3
+Contraceptive,None,Twoing,1,1,3,3,2,2
 Contraceptive with Aggreg,None,Hypercube Cover,2,2,0,1,1,3
-Contraceptive with Aggreg,None,LS Chi Square,2,2,3,0,0,0
-Contraceptive with Aggreg,None,LS Squared Gini,0,0,3,3,3,0
-Contraceptive with Aggreg,None,PC-ext,3,3,0,0,0,3
-Contraceptive with Aggreg,None,Twoing,0,0,2,3,3,2
+Contraceptive with Aggreg,None,LS Chi Square,2,2,4,0,0,0
+Contraceptive with Aggreg,None,LS Squared Gini,0,0,4,3,3,0
+Contraceptive with Aggreg,None,Largest Class Alone,1,1,0,1,1,3
+Contraceptive with Aggreg,None,PC-ext,4,4,0,0,0,3
+Contraceptive with Aggreg,None,Twoing,0,0,3,4,4,2
 Cover Type,None,Hypercube Cover,2,2,2,0,0,1
-Cover Type,None,LS Chi Square,1,1,1,3,3,3
-Cover Type,None,LS Squared Gini,0,0,0,4,4,4
+Cover Type,None,LS Chi Square,1,1,1,4,4,4
+Cover Type,None,LS Squared Gini,0,0,0,5,5,5
+Cover Type,None,Largest Class Alone,2,2,2,0,0,1
 Cover Type,None,PC-ext,2,2,2,0,0,1
-Cover Type,None,Twoing,2,2,4,0,0,0
-Cover Type with Aggreg,None,Hypercube Cover,3,3,2,1,1,2
-Cover Type with Aggreg,None,LS Chi Square,0,0,1,4,4,3
-Cover Type with Aggreg,None,LS Squared Gini,1,1,0,3,3,4
-Cover Type with Aggreg,None,PC-ext,4,4,3,0,0,1
-Cover Type with Aggreg,None,Twoing,2,2,4,2,2,0
+Cover Type,None,Twoing,2,2,5,0,0,0
+Cover Type with Aggreg,None,Hypercube Cover,3,3,2,2,2,3
+Cover Type with Aggreg,None,LS Chi Square,0,0,1,5,5,4
+Cover Type with Aggreg,None,LS Squared Gini,1,1,0,4,4,5
+Cover Type with Aggreg,None,Largest Class Alone,5,5,5,0,0,0
+Cover Type with Aggreg,None,PC-ext,4,4,3,1,1,2
+Cover Type with Aggreg,None,Twoing,2,2,4,3,3,1
 KDD98 Multiclass 2,None,Hypercube Cover,1,1,3,0,0,0
-KDD98 Multiclass 2,None,LS Chi Square,1,1,1,0,0,2
-KDD98 Multiclass 2,None,LS Squared Gini,1,1,0,0,0,4
+KDD98 Multiclass 2,None,LS Chi Square,1,1,1,0,0,3
+KDD98 Multiclass 2,None,LS Squared Gini,1,1,0,0,0,5
+KDD98 Multiclass 2,None,Largest Class Alone,1,1,3,0,0,0
 KDD98 Multiclass 2,None,PC-ext,1,1,2,0,0,0
-KDD98 Multiclass 2,None,Twoing,0,0,1,4,4,1
+KDD98 Multiclass 2,None,Twoing,0,0,1,5,5,2
 KDD98 Multiclass 9,None,Hypercube Cover,2,2,3,2,2,1
-KDD98 Multiclass 9,None,LS Chi Square,4,4,0,0,0,4
-KDD98 Multiclass 9,None,LS Squared Gini,0,0,1,4,3,3
-KDD98 Multiclass 9,None,PC-ext,3,3,4,1,1,0
-KDD98 Multiclass 9,None,Twoing,1,0,2,3,3,2
+KDD98 Multiclass 9,None,LS Chi Square,5,5,0,0,0,5
+KDD98 Multiclass 9,None,LS Squared Gini,0,0,1,5,4,4
+KDD98 Multiclass 9,None,Largest Class Alone,2,2,3,2,2,1
+KDD98 Multiclass 9,None,PC-ext,4,4,5,1,1,0
+KDD98 Multiclass 9,None,Twoing,1,0,2,4,4,3
 San Francisco Crime 15 classes,None,Hypercube Cover,1,1,0,2,2,3
-San Francisco Crime 15 classes,None,LS Chi Square,4,4,2,0,0,0
-San Francisco Crime 15 classes,None,LS Squared Gini,0,0,2,4,4,0
+San Francisco Crime 15 classes,None,LS Chi Square,5,5,3,0,0,0
+San Francisco Crime 15 classes,None,LS Squared Gini,0,0,3,5,5,0
+San Francisco Crime 15 classes,None,Largest Class Alone,1,1,0,2,2,3
 San Francisco Crime 15 classes,None,PC-ext,1,1,0,2,2,3
-San Francisco Crime 15 classes,None,Twoing,3,3,2,1,1,0
-Shelter Animal Outcomes 15 classes,None,Hypercube Cover,2,2,3,1,1,0
-Shelter Animal Outcomes 15 classes,None,LS Chi Square,2,2,1,1,1,3
-Shelter Animal Outcomes 15 classes,None,LS Squared Gini,0,0,0,4,4,4
-Shelter Animal Outcomes 15 classes,None,PC-ext,4,4,2,0,0,2
-Shelter Animal Outcomes 15 classes,None,Twoing,1,1,3,3,3,0
+San Francisco Crime 15 classes,None,Twoing,4,4,3,1,1,0
+Shelter Animal Outcomes 15 classes,None,Hypercube Cover,3,3,4,1,1,0
+Shelter Animal Outcomes 15 classes,None,LS Chi Square,2,2,1,1,1,4
+Shelter Animal Outcomes 15 classes,None,LS Squared Gini,0,0,0,5,5,5
+Shelter Animal Outcomes 15 classes,None,Largest Class Alone,2,2,3,2,2,2
+Shelter Animal Outcomes 15 classes,None,PC-ext,5,5,2,0,0,3
+Shelter Animal Outcomes 15 classes,None,Twoing,1,1,4,4,4,0
