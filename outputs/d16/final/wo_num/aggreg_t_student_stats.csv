@@ -11,12 +11,12 @@ Cars,None,LS Squared Gini,0,0,5,0,0,0
 Cars,None,Largest Class Alone,0,0,0,4,4,2
 Cars,None,PC-ext,1,1,0,0,0,2
 Cars,None,Twoing,1,1,0,0,0,2
-Cars with Aggreg,None,Hypercube Cover,0,0,0,0,0,1
-Cars with Aggreg,None,LS Chi Square,1,1,0,1,1,1
-Cars with Aggreg,None,LS Squared Gini,0,0,5,2,2,0
+Cars with Aggreg,None,Hypercube Cover,2,2,0,0,0,1
+Cars with Aggreg,None,LS Chi Square,1,1,0,4,4,1
+Cars with Aggreg,None,LS Squared Gini,0,0,5,5,5,0
 Cars with Aggreg,None,Largest Class Alone,2,2,0,0,0,1
-Cars with Aggreg,None,PC-ext,0,0,0,0,0,1
-Cars with Aggreg,None,Twoing,0,0,0,0,0,1
+Cars with Aggreg,None,PC-ext,2,2,0,0,0,1
+Cars with Aggreg,None,Twoing,2,2,0,0,0,1
 Contraceptive,None,Hypercube Cover,0,0,0,0,0,1
 Contraceptive,None,LS Chi Square,1,1,0,0,0,3
 Contraceptive,None,LS Squared Gini,0,0,5,0,0,0
