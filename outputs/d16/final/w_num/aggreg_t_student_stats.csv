@@ -55,5 +55,5 @@ Shelter Animal Outcomes 15 classes,None,Hypercube Cover,1,1,4,3,3,1
 Shelter Animal Outcomes 15 classes,None,LS Chi Square,5,5,0,0,0,5
 Shelter Animal Outcomes 15 classes,None,LS Squared Gini,0,0,5,5,5,0
 Shelter Animal Outcomes 15 classes,None,Largest Class Alone,1,1,3,3,3,2
-Shelter Animal Outcomes 15 classes,None,PC-ext,3,3,2,1,1,3
-Shelter Animal Outcomes 15 classes,None,Twoing,3,3,1,1,1,4
+Shelter Animal Outcomes 15 classes,None,PC-ext,3,3,2,2,2,3
+Shelter Animal Outcomes 15 classes,None,Twoing,4,4,1,1,1,4
