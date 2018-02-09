@@ -89,8 +89,9 @@ San Francisco Crime 15 classes,None,Conditional Inference Tree LS Squared Gini,0
 San Francisco Crime 15 classes,None,Conditional Inference Tree Largest Class Alone,1,1,2,4,4,3
 San Francisco Crime 15 classes,None,Conditional Inference Tree PC-ext,2,2,4,1,1,1
 San Francisco Crime 15 classes,None,Conditional Inference Tree Twoing,5,5,1,0,0,4
-Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree Hypercube Cover,2,2,4,0,0,0
-Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree LS Chi Square,2,2,0,0,0,3
-Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree LS Squared Gini,0,0,0,3,3,3
-Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree PC-ext,2,2,2,0,0,1
-Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree Twoing,0,0,2,3,3,1
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree Hypercube Cover,2,2,4,1,0,0
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree LS Chi Square,2,2,0,0,0,4
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree LS Squared Gini,0,0,0,4,4,4
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree Largest Class Alone,4,3,4,0,0,0
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree PC-ext,2,2,2,1,1,2
+Shelter Animal Outcomes 15 classes,None,Conditional Inference Tree Twoing,0,0,2,4,4,2
