@@ -201,6 +201,8 @@ def get_criteria(criteria_names_list):
             criteria_list.append(criteria.LSChiSquare())
         elif criterion_name == "PC-ext":
             criteria_list.append(criteria.PCExt())
+        elif criterion_name == "PC-ext-Entropy":
+            criteria_list.append(criteria.PCExtEntropy())
         elif criterion_name == "Conditional Inference Tree Twoing":
             criteria_list.append(criteria.ConditionalInferenceTreeTwoing())
         elif criterion_name == "Conditional Inference Tree LS Squared Gini":
@@ -215,12 +217,20 @@ def get_criteria(criteria_names_list):
             criteria_list.append(criteria.ConditionalInferenceTreePCExt())
         elif criterion_name == "Hypercube Cover":
             criteria_list.append(criteria.HypercubeCover())
+        elif criterion_name == "Hypercube Cover-Entropy":
+            criteria_list.append(criteria.HypercubeCoverEntropy())
         elif criterion_name == "Conditional Inference Tree Hypercube Cover":
             criteria_list.append(criteria.ConditionalInferenceTreeHypercubeCover())
         elif criterion_name == "Largest Class Alone":
             criteria_list.append(criteria.LargestClassAlone())
+        elif criterion_name == "Largest Class Alone-Entropy":
+            criteria_list.append(criteria.LargestClassAloneEntropy())
         elif criterion_name == "Conditional Inference Tree Largest Class Alone":
             criteria_list.append(criteria.ConditionalInferenceTreeLargestClassAlone())
+        elif criterion_name == "SLIQ-Ext":
+            criteria_list.append(criteria.SliqExt())
+        elif criterion_name == "SLIQ-Ext-Entropy":
+            criteria_list.append(criteria.SliqExtEntropy())
         else:
             print('Unkown criterion name:', criterion_name)
             print('Exiting.')
