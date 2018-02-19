@@ -227,9 +227,9 @@ def get_criteria(criteria_names_list):
             criteria_list.append(criteria.LargestClassAloneEntropy())
         elif criterion_name == "Conditional Inference Tree Largest Class Alone":
             criteria_list.append(criteria.ConditionalInferenceTreeLargestClassAlone())
-        elif criterion_name == "SLIQ-Ext":
+        elif criterion_name == "SLIQ-ext":
             criteria_list.append(criteria.SliqExt())
-        elif criterion_name == "SLIQ-Ext-Entropy":
+        elif criterion_name == "SLIQ-ext-Entropy":
             criteria_list.append(criteria.SliqExtEntropy())
         else:
             print('Unkown criterion name:', criterion_name)

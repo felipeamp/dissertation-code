@@ -5811,7 +5811,7 @@ class LargestClassAloneEntropy(Criterion):
 
 class SliqExt(Criterion):
     """SLIQ-Ext criterion using the Gini impurity measure."""
-    name = 'SLIQ-Ext'
+    name = 'SLIQ-ext'
 
     @classmethod
     def select_best_attribute_and_split(cls, tree_node):
@@ -6007,7 +6007,7 @@ class SliqExt(Criterion):
 
 class SliqExtEntropy(Criterion):
     """SLIQ-Ext criterion using the Entropy impurity measure."""
-    name = 'SLIQ-Ext-Entropy'
+    name = 'SLIQ-ext-Entropy'
 
     @classmethod
     def select_best_attribute_and_split(cls, tree_node):
